@@ -1,17 +1,17 @@
-import { Injectable, Inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
-import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
-import { ACLService } from '@delon/acl';
-import { I18NService } from '../i18n/i18n.service';
-import { Observable, zip, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzIconService } from 'ng-zorro-antd/icon';
+import {Injectable, Inject} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {DA_SERVICE_TOKEN, ITokenService} from '@delon/auth';
+import {ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService} from '@delon/theme';
+import {ACLService} from '@delon/acl';
+import {I18NService} from '../i18n/i18n.service';
+import {Observable, zip, of} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+import type {NzSafeAny} from 'ng-zorro-antd/core/types';
+import {NzIconService} from 'ng-zorro-antd/icon';
 
-import { ICONS } from '../../../style-icons';
-import { ICONS_AUTO } from '../../../style-icons-auto';
+import {ICONS} from '../../../style-icons';
+import {ICONS_AUTO} from '../../../style-icons-auto';
 
 /**
  * Used for application startup
@@ -33,47 +33,46 @@ export class StartupService {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
   }
 
-  
-    private viaHttp(): Observable<void> {
-      const defaultLang = this.i18n.defaultLang;
-      return zip(this.i18n.loadLangData(defaultLang), this.httpClient.get('assets/tmp/app-data.json')).pipe(
-        catchError((res: NzSafeAny) => {
-          console.warn(`StartupService.load: Network request failed`, res);
-          setTimeout(() => this.router.navigateByUrl(`/exception/500`));
-          return [];
-        }),
-        map(([langData, appData]: [Record<string, string>, NzSafeAny]) => {
-          // setting language data
-          this.i18n.use(defaultLang, langData);
 
-          // Application data
-          // Application information: including site name, description, year
-          this.settingService.setApp(appData.app);
-          // User information: including name, avatar, email address
-          this.settingService.setUser(appData.user);
-          // ACL: Set the permissions to full, https://ng-alain.com/acl/getting-started
-          this.aclService.setFull(true);
-          // Menu data, https://ng-alain.com/theme/menu
-          this.menuService.add(appData.menu);
-          // Can be set page suffix title, https://ng-alain.com/theme/title
-          this.titleService.suffix = appData.app.name;
-        })
-      );
-    }
-  
+  private viaHttp(): Observable<void> {
+    const defaultLang = this.i18n.defaultLang;
+    return zip(this.i18n.loadLangData(defaultLang), this.httpClient.get('assets/tmp/app-data.json')).pipe(
+      catchError((res: NzSafeAny) => {
+        console.warn(`StartupService.load: Network request failed`, res);
+        setTimeout(() => this.router.navigateByUrl(`/exception/500`));
+        return [];
+      }),
+      map(([langData, appData]: [Record<string, string>, NzSafeAny]) => {
+        // setting language data
+        this.i18n.use(defaultLang, langData);
 
-  
+        // Application data
+        // Application information: including site name, description, year
+        this.settingService.setApp(appData.app);
+        // User information: including name, avatar, email address
+        this.settingService.setUser(appData.user);
+        // ACL: Set the permissions to full, https://ng-alain.com/acl/getting-started
+        this.aclService.setFull(true);
+        // Menu data, https://ng-alain.com/theme/menu
+        this.menuService.add(appData.menu);
+        // Can be set page suffix title, https://ng-alain.com/theme/title
+        this.titleService.suffix = appData.app.name;
+      })
+    );
+  }
+
+
   private viaMockI18n(): Observable<void> {
     const defaultLang = this.i18n.defaultLang;
     return this.i18n.loadLangData(defaultLang).pipe(
-        map((langData: NzSafeAny) => {
-          this.i18n.use(defaultLang, langData);
+      map((langData: NzSafeAny) => {
+        this.i18n.use(defaultLang, langData);
 
-          this.viaMock();
-        })
-      );
+        this.viaMock();
+      })
+    );
   }
-  
+
   private viaMock(): Observable<void> {
     // const tokenData = this.tokenService.get();
     // if (!tokenData.token) {
@@ -100,14 +99,56 @@ export class StartupService {
     // Menu data, https://ng-alain.com/theme/menu
     this.menuService.add([
       {
-        text: 'Main',
+        text: '主菜单',
         group: true,
+        hideInBreadcrumb: true,
         children: [
           {
-            text: 'Dashboard',
+            text: '仪表盘',
             link: '/dashboard',
-            icon: { type: 'icon', value: 'appstore' }
-          }
+            icon: {type: 'icon', value: 'appstore'}
+          },
+          {
+            text: '系统管理',
+            link: '/sys',
+            icon: {type: 'icon', value: 'appstore'},
+            children:[
+              {
+                text:"管理员列表",
+                link: "/sys/users",
+              },
+              {
+                text:"历史记录",
+                link: "/sys/log",
+              },
+            ]
+          },
+          {
+            text: '学校管理',
+            link: '/school',
+            icon: {type: 'icon', value: 'appstore'}
+          },
+          {
+            text: '商店',
+            link: '/shop',
+            icon: {type: 'icon', value: 'appstore'}
+          },
+          {
+            text: '课程管理',
+            link: '/course',
+            icon: {type: 'icon', value: 'appstore'}
+          },
+          {
+            text: '成绩管理',
+            link: '/score',
+            icon: {type: 'icon', value: 'appstore'}
+          },
+          {
+            text: '设备管理',
+            link: '/device',
+            icon: {type: 'icon', value: 'appstore'}
+          },
+
         ]
       }
     ]);
