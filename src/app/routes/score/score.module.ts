@@ -1,8 +1,10 @@
 import { NgModule, Type } from '@angular/core';
 import { SharedModule } from '@shared';
 import { ScoreRoutingModule } from './score-routing.module';
+import { ScoreScoresComponent } from './scores/scores.component';
 
-const COMPONENTS: Type<void>[] = [];
+const COMPONENTS: Type<void>[] = [
+  ScoreScoresComponent];
 
 @NgModule({
   imports: [

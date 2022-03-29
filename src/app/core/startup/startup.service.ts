@@ -126,22 +126,62 @@ export class StartupService {
           {
             text: '学校管理',
             link: '/school',
-            icon: {type: 'icon', value: 'appstore'}
+            icon: {type: 'icon', value: 'appstore'},
+            children:[
+              {
+                text:"学校列表",
+                link: "/school/schools",
+              },
+              {
+                text:"学院",
+                link: "/school/colleges",
+              },
+              {
+                text:"专业",
+                link: "/school/majors",
+              },
+              // {
+              //   text:"历史记录",
+              //   link: "/sys/log",
+              // },
+            ]
           },
           {
             text: '商店',
             link: '/shop',
-            icon: {type: 'icon', value: 'appstore'}
+            icon: {type: 'icon', value: 'appstore'},
+            children:[
+              {
+                text:"商店列表",
+                link: "/shop/shops",
+              },
+              {
+                text:"产品列表",
+                link: "/shop/products",
+              },
+            ]
           },
           {
             text: '课程管理',
             link: '/course',
-            icon: {type: 'icon', value: 'appstore'}
+            icon: {type: 'icon', value: 'appstore'},
+            children:[
+              {
+                text:"课程列表",
+                link: "/course/courses",
+              },
+            ]
           },
           {
             text: '成绩管理',
             link: '/score',
-            icon: {type: 'icon', value: 'appstore'}
+            icon: {type: 'icon', value: 'appstore'},
+            children:[
+              {
+                text:"成绩列表",
+                link: "/score/scores",
+              },
+            ]
           },
           {
             text: '设备管理',
