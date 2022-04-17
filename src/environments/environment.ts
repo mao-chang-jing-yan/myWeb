@@ -4,6 +4,8 @@
 
 import { DelonMockModule } from '@delon/mock';
 import { Environment } from '@delon/theme';
+import * as apis from "./apis";
+console.log("tyui",apis)
 
 import * as MOCKDATA from '../../_mock';
 
@@ -15,6 +17,7 @@ export const environment = {
     refreshTokenEnabled: true,
     refreshTokenType: 'auth-refresh'
   },
+  apis: {...apis},
   modules: [DelonMockModule.forRoot({ data: MOCKDATA })]
 } as Environment;
 

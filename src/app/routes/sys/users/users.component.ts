@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {STColumn, STComponent, STRes} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {ModalHelper, _HttpClient} from '@delon/theme';
+import {environment} from "@env/environment";
 
 @Component({
   selector: 'app-sys-users',
@@ -9,8 +10,7 @@ import {ModalHelper, _HttpClient} from '@delon/theme';
 })
 export class SysUsersComponent implements OnInit {
   isVisible = false;
-
-  url = `/api/v1/web/users`;
+  url = environment["apis"]["webBase"] + environment["apis"]["Users"];
   searchSchema: SFSchema = {
     properties: {
       name: {
@@ -45,10 +45,12 @@ export class SysUsersComponent implements OnInit {
     {
       title: '',
       buttons: [
-        { text: '查看', click: (item: any) => `/form/${item.id}` },
-        { text: '编辑', type: 'static',
+        {text: '查看', click: (item: any) => `/form/${item.id}`},
+        {
+          text: '编辑', type: 'static',
           // component: FormEditComponent,
-          click: 'reload' },
+          click: 'reload'
+        },
       ]
     }
   ];
@@ -60,9 +62,11 @@ export class SysUsersComponent implements OnInit {
   }
 
 
+  constructor(private http: _HttpClient,
+              private modal: ModalHelper,
 
-
-  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  ) {
+    console.log(environment)
   }
 
   ngOnInit(): void {
@@ -73,6 +77,7 @@ export class SysUsersComponent implements OnInit {
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
   }
+
   handleOk(): void {
     console.log('Button ok clicked!');
     this.isVisible = false;
@@ -82,6 +87,7 @@ export class SysUsersComponent implements OnInit {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
+
   open(): void {
     this.isVisible = true;
   }
