@@ -27,6 +27,7 @@ export class CourseCoursesComponent implements OnInit {
     {title: '学校id', index: 'school_id'},
     {title: '学院id', index: 'college_id'},
     {title: '专业id', index: 'major_id'},
+    {title: '教师id', index: 'teacher_id'},
 
 
     {title: '创建人', index: 'create_by'},

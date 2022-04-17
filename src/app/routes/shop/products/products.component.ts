@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { STColumn, STComponent } from '@delon/abc/st';
+import {STColumn, STComponent, STRes} from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 
@@ -11,18 +11,32 @@ export class ShopProductsComponent implements OnInit {
   url = `/user`;
   searchSchema: SFSchema = {
     properties: {
-      no: {
+      name: {
         type: 'string',
-        title: '编号'
+        title: '名称'
       }
     }
   };
   @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
-    { title: '编号', index: 'no' },
-    { title: '调用次数', type: 'number', index: 'callNo' },
-    { title: '头像', type: 'img', width: '50px', index: 'avatar' },
-    { title: '时间', type: 'date', index: 'updatedAt' },
+    { title: '编号', index: 'id' },
+    { title: '用户id', index: 'user_id' },
+    { title: '商店id', index: 'shop_id' },
+    { title: '名称', index: 'name' },
+    { title: '详情', index: 'detail' },
+    { title: '图片地址', index: 'img_url' },
+    { title: '价格', index: 'price' },
+    { title: '原价', index: 'old_price' },
+
+    { title: '状态', index: 'state' },
+    { title: '类型', index: 'type' },
+
+
+
+    {title: '创建人', index: 'create_by'},
+    {title: '创建时间', type: 'date', index: 'create_at'},
+    {title: '更新时间', type: 'date', index: 'update_at'},
+    {title: '删除时间', type: 'date', index: 'delete_at'},
     {
       title: '',
       buttons: [
@@ -31,7 +45,12 @@ export class ShopProductsComponent implements OnInit {
       ]
     }
   ];
-
+  res: STRes = {
+    reName: {
+      total: "total",
+      list: "data",
+    }
+  }
   constructor(private http: _HttpClient, private modal: ModalHelper) { }
 
   ngOnInit(): void { }

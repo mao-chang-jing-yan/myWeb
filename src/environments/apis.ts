@@ -1,5 +1,5 @@
-export const base = "http://127.0.0.1:8002/api/v1"
-// export const base = "http://47.100.82.173:8002/api/v1"
+// export const base = "http://127.0.0.1:8002/api/v1"
+export const base = "http://47.100.82.173:8002/api/v1"
 export const web = "/web"
 export const webBase = base + web
 export const wechat = "/wechat"
@@ -42,6 +42,12 @@ export const QueryCourse = "/course/query"
 export const CreateCourse = "/course/create"
 export const UpdateCourse = "/course/update"
 export const DeleteCourse = "/course/delete"
+
+// score 成绩
+export const QueryScore  = "/score/query"
+export const CreateScore = "/score/create"
+export const UpdateScore = "/score/update"
+export const DeleteScore = "/score/delete"
 
 // shop 商品
 export const QueryShop = "/shop/query"

@@ -3,6 +3,8 @@ import {STColumn, STComponent, STRes} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {ModalHelper, _HttpClient} from '@delon/theme';
 import {environment} from "@env/environment";
+import {SysUsersEditComponent} from "./edit/edit.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sys-users',
@@ -37,11 +39,18 @@ export class SysUsersComponent implements OnInit {
   // update_at: "2022
   @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
-    {title: '编号', index: 'id'},
+    {title: '编号', index: 'id', width: "10px"},
     // { title: '调用次数', type: 'number', index: 'callNo' },
-    {title: '头像', type: 'img', width: '50px', index: 'ava_url'},
-    {title: '时间', type: 'date', index: 'update_at'},
-    {title: '名称', type: '', index: 'name'},
+    {title: '头像', type: 'img', width: '10px', index: 'ava_url'},
+    {title: '名称', index: 'name'},
+    // {title: '小程序开放id',  index: 'open_id'},
+    {title: '昵称', index: 'nick_name'},
+    {title: '电话', index: 'phone'},
+
+    {title: '创建人', index: 'create_by'},
+    {title: '创建时间', type: 'date', index: 'create_at'},
+    // {title: '更新时间', type: 'date', index: 'update_at'},
+    // {title: '删除时间', type: 'date', index: 'delete_at'},
     {
       title: '',
       buttons: [
@@ -64,7 +73,7 @@ export class SysUsersComponent implements OnInit {
 
   constructor(private http: _HttpClient,
               private modal: ModalHelper,
-
+              private router: Router,
   ) {
     console.log(environment)
   }
@@ -74,22 +83,14 @@ export class SysUsersComponent implements OnInit {
 
   add(): void {
     // this.modal
-    //   .createStatic(FormEditComponent, { i: { id: 0 } })
+    //   .createStatic(SysUsersEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
-  }
-
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.isVisible = false;
-  }
-
-  handleCancel(): void {
-    console.log('Button cancel clicked!');
-    this.isVisible = false;
+    console.log(this.router.url);
+    this.router.navigateByUrl("/sys/users/create").then(r => {})
   }
 
   open(): void {
-    this.isVisible = true;
+    // this.isVisible = true;
   }
 
 }
