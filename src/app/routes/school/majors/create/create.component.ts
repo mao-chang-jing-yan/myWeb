@@ -17,8 +17,7 @@ export class SysUsersCreateComponent implements OnInit {
   form!: FormGroup;
   submitting = false;
 
-  constructor(private fb: FormBuilder, private http: _HttpClient, private msg: NzMessageService, private cdr: ChangeDetectorRef) {
-  }
+  constructor(private fb: FormBuilder,private http: _HttpClient, private msg: NzMessageService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -38,19 +37,10 @@ export class SysUsersCreateComponent implements OnInit {
     this.submitting = true;
     setTimeout(() => {
       const url = environment["apis"]["webBase"] + environment["apis"]["CreateUser"];
-      console.log(url, this.form)
-      this.http.post(url, this.form.value, {})
-        .subscribe(
-          res => {
-            this.submitting = false;
-            this.msg.success(`提交成功`);
-            this.cdr.detectChanges();
-          },
-          err => {
-            this.submitting = false;
-            // this.msg.error(`提交失败`);
-            // this.cdr.detectChanges();
-          });
+      this.http.post(url);
+      this.submitting = false;
+      this.msg.success(`提交成功`);
+      this.cdr.detectChanges();
     }, 1000);
   }
 

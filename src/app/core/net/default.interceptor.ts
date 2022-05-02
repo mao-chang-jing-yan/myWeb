@@ -4,7 +4,7 @@ import {
   HttpHandler,
   HttpHeaders,
   HttpInterceptor,
-  HttpRequest,
+  HttpRequest, HttpResponse,
   HttpResponseBase
 } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
@@ -15,6 +15,7 @@ import { environment } from '@env/environment';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, filter, mergeMap, switchMap, take } from 'rxjs/operators';
+import {NzMessageService} from "ng-zorro-antd/message";
 
 const CODEMESSAGE: { [key: number]: string } = {
   200: '服务器成功返回请求的数据。',
@@ -80,14 +81,14 @@ export class DefaultInterceptor implements HttpInterceptor {
    */
   private refreshTokenRequest(): Observable<any> {
     const model = this.tokenSrv.get();
-    return this.http.post(`/api/auth/refresh`, null, null, { headers: { refresh_token: model?.['refresh_token'] || '' } });
+    return this.http.post(environment["apis"]["webBase"] + environment["apis"]["ReFreshToken"], null, null, { headers: { refresh_token: model?.['refresh_token'] || '' } });
   }
 
   // #region 刷新Token方式一：使用 401 重新刷新 Token
 
   private tryRefreshToken(ev: HttpResponseBase, req: HttpRequest<any>, next: HttpHandler): Observable<any> {
     // 1、若请求为刷新Token请求，表示来自刷新Token可以直接跳转登录页
-    if ([`/api/auth/refresh`].some(url => req.url.includes(url))) {
+    if ([environment["apis"]["ReFreshToken"]].some(url => req.url.includes(url))) {
       this.toLogin();
       return throwError(ev);
     }
