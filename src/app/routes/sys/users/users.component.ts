@@ -3,7 +3,6 @@ import {STColumn, STComponent, STRes} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {ModalHelper, _HttpClient} from '@delon/theme';
 import {environment} from "@env/environment";
-import {SysUsersEditComponent} from "./edit/edit.component";
 import {Router} from "@angular/router";
 
 @Component({
@@ -54,11 +53,21 @@ export class SysUsersComponent implements OnInit {
     {
       title: '',
       buttons: [
-        {text: '查看', click: (item: any) => `/form/${item.id}`},
+        {
+          text: '查看',
+          click: (item: any) => {
+            this.router.navigateByUrl(`/sys/users/update?id=${item.id}&type=show`).then(r => {
+            })
+          }
+        },
         {
           text: '编辑', type: 'static',
           // component: FormEditComponent,
-          click: 'reload'
+          // click: 'reload'
+          click: (item: any) => {
+            this.router.navigateByUrl(`/sys/users/update?id=${item.id}&type=edit`).then(r => {
+            })
+          }
         },
       ]
     }
@@ -86,7 +95,8 @@ export class SysUsersComponent implements OnInit {
     //   .createStatic(SysUsersEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());
     console.log(this.router.url);
-    this.router.navigateByUrl("/sys/users/create").then(r => {})
+    this.router.navigateByUrl("/sys/users/create").then(r => {
+    })
   }
 
   open(): void {

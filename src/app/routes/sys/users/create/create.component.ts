@@ -22,14 +22,14 @@ export class SysUsersCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      title: [null, [Validators.required]],
-      date: [null, [Validators.required]],
-      goal: [null, [Validators.required]],
-      standard: [null, [Validators.required]],
-      client: [null, []],
-      invites: [null, []],
-      weight: [null, []],
-      public: [1, [Validators.min(1), Validators.max(3)]],
+      name: [null, [Validators.required]],
+      nick_name: [null, [Validators.required]],
+      phone: [null, [Validators.required]],
+      password: [null, [Validators.required]],
+      email: [null, []],
+      // invites: [null, []],
+      // weight: [null, []],
+      // public: [1, [Validators.min(1), Validators.max(3)]],
       // publicUsers: [null, []]
     });
   }
