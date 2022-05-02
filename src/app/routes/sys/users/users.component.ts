@@ -69,6 +69,16 @@ export class SysUsersComponent implements OnInit {
             })
           }
         },
+        {
+          text: '删除', type: 'del',
+          // icon: 'del',
+          // component: FormEditComponent,
+          // click: 'reload'
+          // click: (item: any) => {
+          //   this.router.navigateByUrl(`/sys/users/update?id=${item.id}&type=edit`).then(r => {
+          //   })
+          // }
+        },
       ]
     }
   ];

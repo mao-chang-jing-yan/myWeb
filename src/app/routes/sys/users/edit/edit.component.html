@@ -31,12 +31,7 @@
       </div>
     </div>
   </ng-template>
-  <ng-template #tab>
-    <nz-tabset>
-      <nz-tab nzTitle="课程"></nz-tab>
-      <nz-tab nzTitle="商品"></nz-tab>
-    </nz-tabset>
-  </ng-template>
+
   <sv-container size="small" col="2">
     <sv label="创建人">{{user_info?.name}}</sv>
     <sv label="订购产品">{{user_info?.nick_name}}</sv>
@@ -48,35 +43,71 @@
     <sv label="备注">请于两个工作日内确认</sv>
   </sv-container>
 </page-header>
-<!--<nz-card [nzBordered]="false" class="mb-lg" nzTitle="流程进度">-->
-<!--  <nz-steps [nzCurrent]="1" nzProgressDot>-->
-<!--    <nz-step [nzTitle]="'创建项目'" [nzDescription]="createDesc">-->
-<!--      <ng-template #createDesc>-->
-<!--        <div class="desc">-->
-<!--          <div class="my-sm">-->
-<!--            曲丽丽-->
-<!--            <i nz-icon nzType="dingding" class="ml-sm"></i>-->
-<!--          </div>-->
-<!--          <div>2016-12-12 12:32</div>-->
-<!--        </div>-->
-<!--      </ng-template>-->
-<!--    </nz-step>-->
-<!--    <nz-step [nzTitle]="'部门初审'" [nzDescription]="checkedDesc">-->
-<!--      <ng-template #checkedDesc>-->
-<!--        <div class="desc">-->
-<!--          <div class="my-sm">-->
-<!--            周毛毛-->
-<!--            <i nz-icon nzType="dingding" class="ml-sm" style="color: #00a0e9"></i>-->
-<!--          </div>-->
-<!--          <a (click)="msg.success('click')">催一下</a>-->
-<!--        </div>-->
-<!--      </ng-template>-->
-<!--    </nz-step>-->
-<!--    <nz-step [nzTitle]="'财务复核'"></nz-step>-->
-<!--    <nz-step [nzTitle]="'完成'"></nz-step>-->
-<!--  </nz-steps>-->
-<!--  <div class="steps-content"></div>-->
-<!--</nz-card>-->
+
+<ng-template #tab style="background: red">
+  <nz-tabset>
+    <nz-tab nzTitle="课程">
+      <ng-container *ngTemplateOutlet="tab1" [style]="{background: 'red'}"></ng-container>
+    </nz-tab>
+    <nz-tab nzTitle="商品">p</nz-tab>
+  </nz-tabset>
+</ng-template>
+<ng-template #tab1>
+  <div [style]="{}">
+    fuft
+  </div>
+  <nz-card [nzBordered]="false" nzTitle="用户信息" class="mb-lg">
+    <sv-container class="mb-lg">
+      <sv label="用户姓名">付小小</sv>
+      <sv label="会员卡号">32943898021309809423</sv>
+      <sv label="身份证">3321944288191034921</sv>
+      <sv label="联系方式">18112345678</sv>
+      <sv label="联系地址">曲丽丽 18100000000 浙江省杭州市西湖区黄姑山路工专路交叉路口</sv>
+    </sv-container>
+    <sv-container class="mb-lg" title="信息组">
+      <sv label="某某数据">725</sv>
+      <sv label="该数据更新时间">2017-08-08</sv>
+      <sv>&nbsp;</sv>
+      <sv [label]="label">
+        <ng-template #label>
+          某某数据
+          <i nz-tooltip nzTooltipTitle="数据说明" nz-icon nzType="info-circle"></i>
+        </ng-template>
+        725
+      </sv>
+      <sv label="该数据更新时间">2017-08-08</sv>
+    </sv-container>
+  </nz-card>
+</ng-template>
+<nz-card [nzBordered]="false" class="mb-lg" nzTitle="流程进度">
+  <nz-steps [nzCurrent]="1" nzProgressDot>
+    <nz-step [nzTitle]="'创建项目'" [nzDescription]="createDesc">
+      <ng-template #createDesc>
+        <div class="desc">
+          <div class="my-sm">
+            曲丽丽
+            <i nz-icon nzType="dingding" class="ml-sm"></i>
+          </div>
+          <div>2016-12-12 12:32</div>
+        </div>
+      </ng-template>
+    </nz-step>
+    <nz-step [nzTitle]="'部门初审'" [nzDescription]="checkedDesc">
+      <ng-template #checkedDesc>
+        <div class="desc">
+          <div class="my-sm">
+            周毛毛
+            <i nz-icon nzType="dingding" class="ml-sm" style="color: #00a0e9"></i>
+          </div>
+          <a (click)="msg.success('click')">催一下</a>
+        </div>
+      </ng-template>
+    </nz-step>
+    <nz-step [nzTitle]="'财务复核'"></nz-step>
+    <nz-step [nzTitle]="'完成'"></nz-step>
+  </nz-steps>
+  <div class="steps-content"></div>
+</nz-card>
 <!--<nz-card [nzBordered]="false" nzTitle="用户信息" class="mb-lg">-->
 <!--  <sv-container class="mb-lg">-->
 <!--    <sv label="用户姓名">付小小</sv>-->

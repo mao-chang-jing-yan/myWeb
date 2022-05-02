@@ -48,6 +48,11 @@ const routes: Routes = [
         data: {title: '成绩管理'},
         loadChildren: () => import('./score/score.module').then((m) => m.ScoreModule)
       },
+      {
+        path: 'account',
+        data: {title: '个人中心'},
+        loadChildren: () => import('./account/account.module').then((m) => m.AccountModule)
+      },
     ]
   },
   // 空白布局

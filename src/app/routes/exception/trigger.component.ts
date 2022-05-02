@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
 import { _HttpClient } from '@delon/theme';
+import {environment} from "@env/environment";
 
 @Component({
   selector: 'exception-trigger',
@@ -23,9 +24,9 @@ export class ExceptionTriggerComponent {
   }
 
   refresh(): void {
-    this.tokenService.set({ token: 'invalid-token' });
+    // this.tokenService.set({ token: 'invalid-token' });
     // 必须提供一个后端地址，无法通过 Mock 来模拟
-    this.http.post(`https://localhost:5001/auth`).subscribe(
+    this.http.post(environment["apis"]["webBase"] + environment["apis"]["ReFreshToken"]).subscribe(
       res => console.warn('成功', res),
       err => {
         console.log('最后结果失败', err);
