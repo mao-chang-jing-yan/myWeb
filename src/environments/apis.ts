@@ -1,5 +1,5 @@
-// export const base = "http://127.0.0.1:8002/api/v1"
-export const base = "http://47.100.82.173:8002/api/v1"
+export const base = "http://127.0.0.1:8002/api/v1"
+// export const base = "http://47.100.82.173:8002/api/v1"
 export const web = "/web"
 export const webBase = base + web
 export const wechat = "/wechat"
@@ -13,6 +13,7 @@ export const ImageUpload = "/images/upload"
 // users 用户
 export const Login = "/users/login"
 export const Register = "/users/register"
+export const ReFreshToken  = "/users/refresh_token"
 export const Users = "/users"
 export const UpdateUser = "/users/update"
 export const DeleteUser = "/users/delete"

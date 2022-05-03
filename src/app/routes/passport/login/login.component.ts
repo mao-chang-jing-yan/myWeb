@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, Optional } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { StartupService } from '@core';
-import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService } from '@delon/auth';
-import { SettingsService, _HttpClient } from '@delon/theme';
-import { environment } from '@env/environment';
-import { NzTabChangeEvent } from 'ng-zorro-antd/tabs';
-import { finalize } from 'rxjs/operators';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, Optional} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {StartupService} from '@core';
+import {ReuseTabService} from '@delon/abc/reuse-tab';
+import {DA_SERVICE_TOKEN, ITokenService, SocialOpenType, SocialService} from '@delon/auth';
+import {SettingsService, _HttpClient} from '@delon/theme';
+import {environment} from '@env/environment';
+import {NzTabChangeEvent} from 'ng-zorro-antd/tabs';
+import {finalize} from 'rxjs/operators';
 
 @Component({
   selector: 'passport-login',
@@ -31,8 +31,10 @@ export class UserLoginComponent implements OnDestroy {
     private cdr: ChangeDetectorRef
   ) {
     this.form = fb.group({
-      userName: [null, [Validators.required, Validators.pattern(/^(admin|user)$/)]],
-      password: [null, [Validators.required, Validators.pattern(/^(ng\-alain\.com)$/)]],
+      // userName: [null, [Validators.required, Validators.pattern(/^(admin|user)$/)]],
+      // password: [null, [Validators.required, Validators.pattern(/^(ng\-alain\.com)$/)]],
+      userName: [null, [Validators.required]],
+      password: [null, [Validators.required]],
       mobile: [null, [Validators.required, Validators.pattern(/^1\d{10}$/)]],
       captcha: [null, [Validators.required]],
       remember: [true]
@@ -44,15 +46,19 @@ export class UserLoginComponent implements OnDestroy {
   get userName(): AbstractControl {
     return this.form.get('userName')!;
   }
+
   get password(): AbstractControl {
     return this.form.get('password')!;
   }
+
   get mobile(): AbstractControl {
     return this.form.get('mobile')!;
   }
+
   get captcha(): AbstractControl {
     return this.form.get('captcha')!;
   }
+
   form: FormGroup;
   error = '';
   type = 0;
@@ -65,14 +71,14 @@ export class UserLoginComponent implements OnDestroy {
 
   // #endregion
 
-  switch({ index }: NzTabChangeEvent): void {
+  switch({index}: NzTabChangeEvent): void {
     this.type = index!;
   }
 
   getCaptcha(): void {
     if (this.mobile.invalid) {
-      this.mobile.markAsDirty({ onlySelf: true });
-      this.mobile.updateValueAndValidity({ onlySelf: true });
+      this.mobile.markAsDirty({onlySelf: true});
+      this.mobile.updateValueAndValidity({onlySelf: true});
       return;
     }
     this.count = 59;
@@ -111,7 +117,7 @@ export class UserLoginComponent implements OnDestroy {
     this.loading = true;
     this.cdr.detectChanges();
     this.http
-      .post('/login/account?_allow_anonymous=true', {
+      .post(environment["apis"]["webBase"] + environment["apis"]["Login"] + '?_allow_anonymous=true', {
         type: this.type,
         userName: this.userName.value,
         password: this.password.value
@@ -133,6 +139,7 @@ export class UserLoginComponent implements OnDestroy {
         // 设置用户Token信息
         // TODO: Mock expired value
         res.user.expired = +new Date() + 1000 * 60 * 5;
+        this.settingsService.setUser(res.user);
         this.tokenService.set(res.user);
         // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
         this.startupSrv.load().subscribe(() => {
