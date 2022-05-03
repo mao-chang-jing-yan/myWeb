@@ -17,6 +17,10 @@ export class SysUsersComponent implements OnInit {
       name: {
         type: 'string',
         title: '名称'
+      },
+      nick_name: {
+        type: 'string',
+        title: '昵称'
       }
     }
   };
@@ -38,7 +42,7 @@ export class SysUsersComponent implements OnInit {
   // update_at: "2022
   @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
-    {title: '编号', index: 'id', width: "10px"},
+    // {title: '编号', index: 'id', width: "10px"},
     // { title: '调用次数', type: 'number', index: 'callNo' },
     {title: '头像', type: 'img', width: '10px', index: 'ava_url'},
     {title: '名称', index: 'name'},
@@ -46,7 +50,10 @@ export class SysUsersComponent implements OnInit {
     {title: '昵称', index: 'nick_name'},
     {title: '电话', index: 'phone'},
 
-    {title: '创建人', index: 'create_by'},
+    {title: '状态', index: 'state'},
+    {title: '类型', index: 'type'},
+
+    // {title: '创建人', index: 'create_by'},
     {title: '创建时间', type: 'date', index: 'create_at'},
     // {title: '更新时间', type: 'date', index: 'update_at'},
     // {title: '删除时间', type: 'date', index: 'delete_at'},
@@ -74,10 +81,11 @@ export class SysUsersComponent implements OnInit {
           // icon: 'del',
           // component: FormEditComponent,
           // click: 'reload'
-          // click: (item: any) => {
-          //   this.router.navigateByUrl(`/sys/users/update?id=${item.id}&type=edit`).then(r => {
-          //   })
-          // }
+          click: (item: any) => {
+            this.http.delete(environment["apis"]["webBase"] + environment["apis"]["DeleteUser"] + "?id=" + item.id).subscribe(r=>{
+              this.st.reload()
+            })
+          }
         },
       ]
     }

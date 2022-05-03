@@ -6,6 +6,7 @@ import {_HttpClient, ModalHelper} from "@delon/theme";
 import {SysUsersEditComponent} from "../edit/edit.component";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sys-users-create',
@@ -17,7 +18,13 @@ export class SysUsersCreateComponent implements OnInit {
   form!: FormGroup;
   submitting = false;
 
-  constructor(private fb: FormBuilder, private http: _HttpClient, private msg: NzMessageService, private cdr: ChangeDetectorRef) {
+  constructor(
+    private fb: FormBuilder,
+    private http: _HttpClient,
+    private msg: NzMessageService,
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+  ) {
   }
 
   ngOnInit(): void {
@@ -45,6 +52,8 @@ export class SysUsersCreateComponent implements OnInit {
             this.submitting = false;
             this.msg.success(`提交成功`);
             this.cdr.detectChanges();
+            this.router.navigateByUrl(`/sys/users`).then(r => {
+            })
           },
           err => {
             this.submitting = false;
@@ -52,6 +61,10 @@ export class SysUsersCreateComponent implements OnInit {
             // this.cdr.detectChanges();
           });
     }, 1000);
+  }
+
+  reset(){
+    this.form.reset()
   }
 
 }

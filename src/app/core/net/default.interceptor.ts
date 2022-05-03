@@ -7,14 +7,14 @@ import {
   HttpRequest, HttpResponse,
   HttpResponseBase
 } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
-import { Router } from '@angular/router';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
-import { ALAIN_I18N_TOKEN, _HttpClient } from '@delon/theme';
-import { environment } from '@env/environment';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { catchError, filter, mergeMap, switchMap, take } from 'rxjs/operators';
+import {Injectable, Injector} from '@angular/core';
+import {Router} from '@angular/router';
+import {DA_SERVICE_TOKEN, ITokenService} from '@delon/auth';
+import {ALAIN_I18N_TOKEN, _HttpClient} from '@delon/theme';
+import {environment} from '@env/environment';
+import {NzNotificationService} from 'ng-zorro-antd/notification';
+import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
+import {catchError, filter, mergeMap, switchMap, take} from 'rxjs/operators';
 import {NzMessageService} from "ng-zorro-antd/message";
 
 const CODEMESSAGE: { [key: number]: string } = {
@@ -81,7 +81,7 @@ export class DefaultInterceptor implements HttpInterceptor {
    */
   private refreshTokenRequest(): Observable<any> {
     const model = this.tokenSrv.get();
-    return this.http.post(environment["apis"]["webBase"] + environment["apis"]["ReFreshToken"], null, null, { headers: { refresh_token: model?.['refresh_token'] || '' } });
+    return this.http.post(environment["apis"]["webBase"] + environment["apis"]["ReFreshToken"], {}, {}, {headers: {refresh_token: model?.['refresh_token'] || model?.['token'] || ''}});
   }
 
   // #region 刷新Token方式一：使用 401 重新刷新 Token
@@ -132,7 +132,7 @@ export class DefaultInterceptor implements HttpInterceptor {
     const token = this.tokenSrv.get()?.token;
     return req.clone({
       setHeaders: {
-        token: `Bearer ${token}`
+        token: `${token}`
       }
     });
   }
@@ -182,24 +182,30 @@ export class DefaultInterceptor implements HttpInterceptor {
         //  错误内容：{ status: 1, msg: '非法参数' }
         //  正确内容：{ status: 0, response: {  } }
         // 则以下代码片断可直接适用
-        // if (ev instanceof HttpResponse) {
-        //   const body = ev.body;
-        //   if (body && body.status !== 0) {
-        //     this.injector.get(NzMessageService).error(body.msg);
-        //     // 注意：这里如果继续抛出错误会被行254的 catchError 二次拦截，导致外部实现的 Pipe、subscribe 操作被中断，例如：this.http.get('/').subscribe() 不会触发
-        //     // 如果你希望外部实现，需要手动移除行254
-        //     return throwError({});
-        //   } else {
-        //     // 忽略 Blob 文件体
-        //     if (ev.body instanceof Blob) {
-        //        return of(ev);
-        //     }
-        //     // 重新修改 `body` 内容为 `response` 内容，对于绝大多数场景已经无须再关心业务状态码
-        //     return of(new HttpResponse(Object.assign(ev, { body: body.response })));
-        //     // 或者依然保持完整的格式
-        //     return of(ev);
-        //   }
-        // }
+        if (ev instanceof HttpResponse && ev.url?.startsWith(environment["apis"]["webBase"])) {
+          const body = ev.body;
+          if (body && body.status !== 0) {
+            this.injector.get(NzMessageService).error(body.msg);
+            // this.notification.error(`${body.msg}: ${ev.url}`, "");
+            // 注意：这里如果继续抛出错误会被行254的 catchError 二次拦截，导致外部实现的 Pipe、subscribe 操作被中断，例如：this.http.get('/').subscribe() 不会触发
+            // 如果你希望外部实现，需要手动移除行254
+            // return throwError(ev);
+            // return of(ev);
+          } else {
+            // 忽略 Blob 文件体
+            if (ev.body instanceof Blob) {
+              return of(ev);
+            }
+
+            if (body && body.status === 0) {
+              // 重新修改 `body` 内容为 `response` 内容，对于绝大多数场景已经无须再关心业务状态码
+              // @ts-ignore
+              return of(new HttpResponse(Object.assign(ev, {body: body.res})));
+            }
+            // 或者依然保持完整的格式
+            return of(ev);
+          }
+        }
         break;
       case 401:
         if (this.refreshTokenEnabled && this.refreshTokenType === 're-request') {
@@ -242,7 +248,7 @@ export class DefaultInterceptor implements HttpInterceptor {
     // 统一加上服务端前缀
     let url = req.url;
     if (!url.startsWith('https://') && !url.startsWith('http://')) {
-      const { baseUrl } = environment.api;
+      const {baseUrl} = environment.api;
       url = baseUrl + (baseUrl.endsWith('/') && url.startsWith('/') ? url.substring(1) : url);
     }
 

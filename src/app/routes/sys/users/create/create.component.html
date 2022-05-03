@@ -1,6 +1,6 @@
 <page-header [title]="'创建用户'" [recursiveBreadcrumb]=true> 请输入用户信息 </page-header>
 <nz-card [nzBordered]="false">
-  <form nz-form [formGroup]="form" (ngSubmit)="submit()" se-container="1" labelWidth="200">
+  <form nz-form [formGroup]="form" (ngSubmit)="submit()" (reset)="reset()" se-container="1" labelWidth="200">
     <se label="名称" error="名称" required>
       <input nz-input formControlName="name" placeholder="名称" />
     </se>
@@ -38,7 +38,7 @@
 <!--    </se>-->
     <se>
       <button nz-button nzType="primary" [disabled]="form.invalid" type="submit" [nzLoading]="submitting">提交</button>
-      <button nz-button class="ml-sm">保存</button>
+      <button nz-button class="ml-sm" type="reset">重置</button>
     </se>
   </form>
 </nz-card>
