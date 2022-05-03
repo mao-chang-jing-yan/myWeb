@@ -1,0 +1,15 @@
+FROM node:14.19.0
+
+MAINTAINER  "2425320239@qq.com"
+
+WORKDIR ~/app
+
+ADD . ~/app
+
+RUN yarn
+
+#ENV HOST 0.0.0.0
+#ENV PORT 4200
+EXPOSE 4200
+
+ENTRYPOINT ["npm", "start"]
