@@ -124,32 +124,48 @@ export class UserLoginComponent implements OnDestroy {
       })
       .pipe(
         finalize(() => {
-          this.loading = true;
+          this.loading = false;
           this.cdr.detectChanges();
         })
       )
-      .subscribe(res => {
-        if (res.msg !== 'ok') {
-          this.error = res.msg;
-          this.cdr.detectChanges();
-          return;
-        }
-        // 清空路由复用信息
-        this.reuseTabService.clear();
-        // 设置用户Token信息
-        // TODO: Mock expired value
-        res.user.expired = +new Date() + 1000 * 60 * 5;
-        this.settingsService.setUser(res.user);
-        this.tokenService.set(res.user);
-        // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
-        this.startupSrv.load().subscribe(() => {
-          let url = this.tokenService.referrer!.url || '/';
-          if (url.includes('/passport')) {
-            url = '/';
+      .subscribe((res: any) => {
+          try {
+            if (res.msg !== 'ok') {
+              // this.error = res.msg;
+              // this.loading = false;
+              this.cdr.detectChanges();
+              this.reuseTabService.clear();
+              return;
+            }
+            // 清空路由复用信息
+            this.reuseTabService.clear();
+            // 设置用户Token信息
+            // TODO: Mock expired value
+            res.user.expired = +new Date() + 1000 * 60 * 5;
+            this.settingsService.setUser(res.user);
+            this.tokenService.set(res.user);
+            // 重新获取 StartupService 内容，我们始终认为应用信息一般都会受当前用户授权范围而影响
+            this.startupSrv.load().subscribe(() => {
+              let url = this.tokenService.referrer!.url || '/';
+              if (url.includes('/passport')) {
+                url = '/';
+              }
+              this.router.navigateByUrl(url);
+            });
+          } catch (err) {
+            console.log(err)
           }
-          this.router.navigateByUrl(url);
-        });
-      });
+          // this.loading = false;
+          this.cdr.detectChanges();
+          this.reuseTabService.clear();
+        },
+        (err: any) => {
+          // this.loading = false;
+          this.cdr.detectChanges();
+          this.reuseTabService.clear();
+          console.log(err)
+        }
+      );
   }
 
   // #region social
