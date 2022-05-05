@@ -1,15 +1,23 @@
 FROM node:14.19.0
 
-MAINTAINER  "2425320239@qq.com"
+ADD . /root/app
+WORKDIR /root/app
 
-WORKDIR ~/app
+#RUN yarn config set registry https://registry.npmmirror.com
+#RUN yarn config set sass_binary_site https://npmmirror.com/mirrors/node-sass
+#RUN yarn global add @angular/cli
 
-ADD . ~/app
+#RUN npm install -g npm-check-updates
+#RUN npm install -g npm
+#RUN ncu && ncu -u
 
 RUN yarn
+RUN npm run build
 
-#ENV HOST 0.0.0.0
-#ENV PORT 4200
-EXPOSE 4200
+FROM nginx
 
-ENTRYPOINT ["npm", "start"]
+RUN ls /usr/share/nginx/html/
+COPY --from=0 /root/app/dist/my-web /usr/share/nginx/html
+RUN ls /usr/share/nginx/html
+
+EXPOSE 80
