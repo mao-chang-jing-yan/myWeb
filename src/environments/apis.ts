@@ -1,5 +1,5 @@
-export const base = "http://127.0.0.1:8002/api/v1"
-// export const base = "http://47.100.82.173:8002/api/v1"
+// export const base = "http://127.0.0.1:8002/api/v1"
+export const base = "http://47.100.82.173:8002/api/v1"
 export const web = "/web"
 export const webBase = base + web
 export const wechat = "/wechat"
