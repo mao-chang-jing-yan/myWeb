@@ -2,9 +2,15 @@ clearNone(){
   if [ "$(docker images | grep 'none' |  awk '{print $3}')" = "" ]; then
       return
   fi
-  docker stop  $(docker ps -a  | grep "$(docker images | grep 'none' |  awk '{print $3}')" | awk '{print $1}')
-  docker rm  $(docker ps -a  | grep "$(docker images | grep 'none' |  awk '{print $3}')" | awk '{print $1}')
-  docker rmi $(docker images | grep "none" | awk '{print $3}')
+  if [ "$(docker ps -a  | grep "$(docker images | grep 'none' |  awk '{print $3}')" | awk '{print $1}')" = "" ]
+    then
+      docker rmi $(docker images | grep "none" | awk '{print $3}')
+      return
+    else
+      docker stop  $(docker ps -a  | grep "$(docker images | grep 'none' |  awk '{print $3}')" | awk '{print $1}')
+      docker rm  $(docker ps -a  | grep "$(docker images | grep 'none' |  awk '{print $3}')" | awk '{print $1}')
+      docker rmi $(docker images | grep "none" | awk '{print $3}')
+  fi
 }
 
 
