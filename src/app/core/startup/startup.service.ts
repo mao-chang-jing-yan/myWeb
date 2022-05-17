@@ -113,15 +113,15 @@ export class StartupService {
               //   "link": "/dashboard/v1",
               //   "i18n": "menu.dashboard.v1"
               // },
-              // {
-              //   "text": "分析页",
-              //   "link": "/dashboard/analysis",
-              //   "i18n": "menu.dashboard.analysis"
-              // },
               {
                 "text": "监控页",
                 "link": "/dashboard/monitor",
                 "i18n": "menu.dashboard.monitor"
+              },
+              {
+                "text": "分析页",
+                "link": "/dashboard/analysis",
+                "i18n": "menu.dashboard.analysis"
               },
               // {
               //   "text": "工作台",

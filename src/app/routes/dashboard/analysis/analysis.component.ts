@@ -7,6 +7,8 @@ import { deepCopy } from '@delon/util/other';
 import { yuan } from '@shared';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import * as data from "./data"
+
 
 @Component({
   selector: 'app-dashboard-analysis',
@@ -73,15 +75,23 @@ export class DashboardAnalysisComponent implements OnInit {
   offlineIdx = 0;
 
   ngOnInit(): void {
-    this.http.get('/chart').subscribe(res => {
-      res.offlineData.forEach((item: any, idx: number) => {
-        item.show = idx === 0;
-        item.chart = deepCopy(res.offlineChartData);
-      });
-      this.data = res;
-      this.loading = false;
-      this.changeSaleType();
+    // this.http.get('/chart').subscribe(res => {
+    //   res.offlineData.forEach((item: any, idx: number) => {
+    //     item.show = idx === 0;
+    //     item.chart = deepCopy(res.offlineChartData);
+    //   });
+    //   this.data = res;
+    //   this.loading = false;
+    //   this.changeSaleType();
+    // });
+    let res = data.CHARTS["/chart"];
+    res.offlineData.forEach((item: any, idx: number) => {
+      item.show = idx === 0;
+      item.chart = deepCopy(res.offlineChartData);
     });
+    this.data = res;
+    this.loading = false;
+    this.changeSaleType();
   }
 
   setDate(type: string): void {
