@@ -3,6 +3,7 @@ import { _HttpClient } from '@delon/theme';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import type { CountdownConfig } from 'ngx-countdown';
 import { zip } from 'rxjs';
+import * as data from "./data"
 
 @Component({
   selector: 'app-dashboard-monitor',
@@ -39,13 +40,20 @@ export class DashboardMonitorComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit(): void {
-    zip(this.http.get('/chart'), this.http.get('/chart/tags')).subscribe(([res, tags]: [any, any]) => {
-      this.data = res;
+    // zip(this.http.get('/chart'), this.http.get('/chart/tags')).subscribe(([res, tags]: [any, any]) => {
+    //   this.data = res;
+    //   tags.list[Math.floor(Math.random() * tags.list.length) + 1].value = 1000;
+    //   this.tags = tags.list;
+    //   this.loading = false;
+    //   this.cdr.detectChanges();
+    // });
+      this.data = data.CHARTS["/chart"];
+      let tags = data.CHARTS["/chart/tags"];
       tags.list[Math.floor(Math.random() * tags.list.length) + 1].value = 1000;
       this.tags = tags.list;
       this.loading = false;
       this.cdr.detectChanges();
-    });
+
 
     // active chart
     this.refData();
