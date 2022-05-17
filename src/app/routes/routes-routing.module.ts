@@ -6,7 +6,6 @@ import {environment} from "@env/environment";
 import {LayoutBasicComponent} from '../layout/basic/basic.component';
 import {LayoutPassportComponent} from '../layout/passport/passport.component';
 // dashboard pages
-import {DashboardComponent} from './dashboard/dashboard.component';
 // single pages
 import {CallbackComponent} from './passport/callback.component';
 import {UserLockComponent} from './passport/lock/lock.component';
@@ -22,7 +21,11 @@ const routes: Routes = [
     canActivate: [SimpleGuard],
     children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent, data: {title: '仪表盘'}},
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+        data: { preload: true }
+      },
       {path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule)},
       // 业务子模块
       // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },

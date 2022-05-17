@@ -104,10 +104,33 @@ export class StartupService {
         hideInBreadcrumb: true,
         children: [
           {
-            text: '仪表盘',
-            link: '/dashboard',
-            icon: {type: 'icon', value: 'appstore'}
+            "text": "仪表盘",
+            "i18n": "menu.dashboard",
+            "icon": "anticon-dashboard",
+            "children": [
+              // {
+              //   "text": "仪表盘V1",
+              //   "link": "/dashboard/v1",
+              //   "i18n": "menu.dashboard.v1"
+              // },
+              // {
+              //   "text": "分析页",
+              //   "link": "/dashboard/analysis",
+              //   "i18n": "menu.dashboard.analysis"
+              // },
+              {
+                "text": "监控页",
+                "link": "/dashboard/monitor",
+                "i18n": "menu.dashboard.monitor"
+              },
+              // {
+              //   "text": "工作台",
+              //   "link": "/dashboard/workplace",
+              //   "i18n": "menu.dashboard.workplace"
+              // }
+            ]
           },
+
           {
             text: '系统管理',
             link: '/sys',

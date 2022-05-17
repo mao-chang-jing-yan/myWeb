@@ -7,10 +7,33 @@ import {ProAccountSettingsNotificationComponent} from "./settings/notification/n
 import {ProAccountSettingsBindingComponent} from "./settings/binding/binding.component";
 import {ProAccountSettingsSecurityComponent} from "./settings/security/security.component";
 import {ProAccountSettingsBaseComponent} from "./settings/base/base.component";
+import {ProAccountCenterArticlesComponent} from "./center/articles/articles.component";
+import {ProAccountCenterProjectsComponent} from "./center/projects/projects.component";
+import {ProAccountCenterApplicationsComponent} from "./center/applications/applications.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "center", pathMatch: "full"},
-  {path: 'center', component: ProAccountCenterComponent},
+  {path: 'center', component: ProAccountCenterComponent,
+    children: [
+      { path: '', redirectTo: 'articles', pathMatch: 'full' },
+      {
+        path: 'articles',
+        component: ProAccountCenterArticlesComponent,
+        data: { titleI18n: 'pro-account-center' }
+      },
+      {
+        path: 'projects',
+        component: ProAccountCenterProjectsComponent,
+        data: { titleI18n: 'pro-account-center' }
+      },
+      {
+        path: 'applications',
+        component: ProAccountCenterApplicationsComponent,
+        data: { titleI18n: 'pro-account-center' }
+      }
+    ]
+
+  },
   {
     path: 'settings', component: ProAccountSettingsComponent,
     children: [

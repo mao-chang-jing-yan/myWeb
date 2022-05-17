@@ -5,10 +5,10 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 import {environment} from "@env/environment";
 
 @Component({
-  selector: 'app-sys-users-edit',
+  selector: 'app-school-schools-edit',
   templateUrl: './edit.component.html',
 })
-export class SysUsersEditComponent implements OnInit {
+export class SchoolSchoolsEditComponent implements OnInit {
   record: any = {};
   i: any;
 

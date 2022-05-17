@@ -36,7 +36,7 @@ export class ProAccountSettingsBaseComponent implements OnInit {
   constructor(private http: _HttpClient, private cdr: ChangeDetectorRef, private msg: NzMessageService) {}
   avatar = '';
   userLoading = true;
-  user!: ProAccountSettingsUser;
+  user!: any;
 
   // #region geo
 
@@ -44,25 +44,45 @@ export class ProAccountSettingsBaseComponent implements OnInit {
   cities: ProAccountSettingsCity[] = [];
 
   ngOnInit(): void {
-    zip(this.http.get('/user/current'), this.http.get('/geo/province')).subscribe(
-      ([user, province]: [ProAccountSettingsUser, ProAccountSettingsCity[]]) => {
+    // zip(this.http.get('/user/current'), this.http.get('/geo/province')).subscribe(
+    //   ([user, province]: [ProAccountSettingsUser, ProAccountSettingsCity[]]) => {
         this.userLoading = false;
-        this.user = user;
-        this.provinces = province;
-        this.choProvince(user.geographic.province.key, false);
-        this.cdr.detectChanges();
-      }
-    );
+        this.user = {
+          geographic: {
+            province: {
+              key: "13123",
+            },
+            city: {
+              key: "@1323"
+            },
+          }
+        };
+        this.provinces = [{
+          name: '上海',
+          id: '310000',
+        },
+          {
+            name: '市辖区',
+            id: '310100',
+          },
+          {
+            name: '北京',
+            id: '110000',
+          },];
+    //     this.choProvince(user.geographic.province.key, false);
+    //     this.cdr.detectChanges();
+    //   }
+    // );
   }
 
   choProvince(pid: string, cleanCity: boolean = true): void {
-    this.http.get(`/geo/${pid}`).subscribe(res => {
-      this.cities = res;
-      if (cleanCity) {
-        this.user.geographic.city.key = '';
-      }
+    // this.http.get(`/geo/${pid}`).subscribe(res => {
+    //   this.cities = res;
+    //   if (cleanCity) {
+    //     this.user.geographic.city.key = '';
+    //   }
       this.cdr.detectChanges();
-    });
+    // });
   }
 
   // #endregion

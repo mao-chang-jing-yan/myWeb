@@ -3,6 +3,7 @@ import {STColumn, STComponent, STRes} from '@delon/abc/st';
 import {SFSchema} from '@delon/form';
 import {ModalHelper, _HttpClient} from '@delon/theme';
 import {environment} from "@env/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-school-schools',
@@ -50,13 +51,19 @@ export class SchoolSchoolsComponent implements OnInit {
     }
   }
 
-  constructor(private http: _HttpClient, private modal: ModalHelper) {
+  constructor(
+    private http: _HttpClient,
+    private router: Router,
+    private modal: ModalHelper
+  ) {
   }
 
   ngOnInit(): void {
   }
 
   add(): void {
+    this.router.navigateByUrl("/school/schools/create").then(r => {
+    })
     // this.modal
     //   .createStatic(FormEditComponent, { i: { id: 0 } })
     //   .subscribe(() => this.st.reload());

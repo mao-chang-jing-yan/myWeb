@@ -3,17 +3,16 @@ import {environment} from "@env/environment";
 import {SFSchema} from "@delon/form";
 import {STColumn, STComponent, STRes} from "@delon/abc/st";
 import {_HttpClient, ModalHelper} from "@delon/theme";
-import {SysUsersEditComponent} from "../edit/edit.component";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
-  selector: 'app-sys-users-create',
+  selector: 'app-school-schools-create',
   templateUrl: './create.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 
 })
-export class SysUsersCreateComponent implements OnInit {
+export class SchoolSchoolsCreateComponent implements OnInit {
   form!: FormGroup;
   submitting = false;
 
