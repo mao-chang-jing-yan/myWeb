@@ -9,10 +9,10 @@ import {map, tap} from "rxjs/operators";
 import * as data from "./data"
 
 @Component({
-  selector: 'app-sys-log',
-  templateUrl: './log.component.html',
+  selector: 'app-device-devices',
+  templateUrl: './device.component.html',
 })
-export class SysLogComponent implements OnInit {
+export class DeviceDevicesComponent implements OnInit {
   q: {
     pi: number;
     ps: number;
@@ -45,7 +45,7 @@ export class SysLogComponent implements OnInit {
   @ViewChild('st', {static: true})
   st!: STComponent;
   columns: STColumn[] = [
-    // {title: '', index: 'key', type: 'checkbox'},
+    {title: '', index: 'key', type: 'checkbox'},
     {title: '规则编号', index: 'no'},
     {title: '描述', index: 'description'},
     {
@@ -74,19 +74,19 @@ export class SysLogComponent implements OnInit {
         compare: (a, b) => a.updatedAt - b.updatedAt
       }
     },
-    // {
-    //   title: '操作',
-    //   buttons: [
-    //     {
-    //       text: '配置',
-    //       click: item => this.msg.success(`配置${item.no}`)
-    //     },
-    //     {
-    //       text: '订阅警报',
-    //       click: item => this.msg.success(`订阅警报${item.no}`)
-    //     }
-    //   ]
-    // }
+    {
+      title: '操作',
+      buttons: [
+        {
+          text: '配置',
+          click: item => this.msg.success(`配置${item.no}`)
+        },
+        {
+          text: '订阅警报',
+          click: item => this.msg.success(`订阅警报${item.no}`)
+        }
+      ]
+    }
   ];
   selectedRows: STData[] = [];
   description = '';

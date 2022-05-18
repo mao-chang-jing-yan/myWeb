@@ -12,6 +12,8 @@ import {CurrencyPipeModule} from "@delon/util";
 import {FooterToolbarModule} from "@delon/abc/footer-toolbar";
 import {TagSelectModule} from "@delon/abc/tag-select";
 import {EllipsisModule} from "@delon/abc/ellipsis";
+import {NzBadgeModule} from "ng-zorro-antd/badge";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 
 const COMPONENTS: Type<void>[] = [
   SysLogComponent,
@@ -29,7 +31,9 @@ const COMPONENTS: Type<void>[] = [
     FooterToolbarModule,
     NzPaginationModule,
     NzStepsModule,
-    CurrencyPipeModule
+    CurrencyPipeModule,
+    NzBadgeModule,
+    NzDatePickerModule,
   ],
   declarations: COMPONENTS,
 })

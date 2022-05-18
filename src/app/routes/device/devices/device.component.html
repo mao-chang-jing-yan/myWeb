@@ -4,33 +4,15 @@
     <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
       <div nz-col nzMd="8" nzSm="24">
         <nz-form-item>
-          <nz-form-label nzFor="no">名称</nz-form-label>
+          <nz-form-label nzFor="no">规则编号</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="q.name" name="no" placeholder="请输入" id="no" />
+            <input nz-input [(ngModel)]="q.no" name="no" placeholder="请输入" id="no" />
           </nz-form-control>
         </nz-form-item>
       </div>
       <div nz-col nzMd="8" nzSm="24">
         <nz-form-item>
-          <nz-form-label nzFor="no">创建人</nz-form-label>
-          <nz-form-control>
-            <input nz-input [(ngModel)]="q.create_by" name="no" placeholder="请输入" id="no" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
-        <nz-form-item>
-          <nz-form-label nzFor="no">描述</nz-form-label>
-          <nz-form-control>
-            <input nz-input [(ngModel)]="q.detail" name="no" placeholder="请输入" id="no" />
-          </nz-form-control>
-        </nz-form-item>
-      </div>
-
-      <div nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
-        <nz-form-item>
-          <nz-form-label nzFor="status">状态</nz-form-label>
+          <nz-form-label nzFor="status">使用状态</nz-form-label>
           <nz-form-control>
             <nz-select [(ngModel)]="q.status" name="status" id="status" [nzPlaceHolder]="'请选择'" [nzShowSearch]="true">
               <nz-option *ngFor="let i of status; let idx = index" [nzLabel]="i.text" [nzValue]="idx"></nz-option>
@@ -40,9 +22,37 @@
       </div>
       <div nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
         <nz-form-item>
+          <nz-form-label nzFor="callNo">调用次数</nz-form-label>
+          <nz-form-control>
+            <input nz-input id="callNo" />
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
+        <nz-form-item>
           <nz-form-label nzFor="updatedAt">更新日期</nz-form-label>
           <nz-form-control>
             <nz-date-picker id="updatedAt"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
+        <nz-form-item>
+          <nz-form-label nzFor="status2">使用状态</nz-form-label>
+          <nz-form-control>
+            <nz-select [nzPlaceHolder]="'请选择'" nzId="status2" [nzShowSearch]="true">
+              <nz-option *ngFor="let i of status; let idx = index" [nzLabel]="i.text" [nzValue]="idx"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
+        <nz-form-item>
+          <nz-form-label nzFor="status3">使用状态</nz-form-label>
+          <nz-form-control>
+            <nz-select [nzPlaceHolder]="'请选择'" nzId="status3" [nzShowSearch]="true">
+              <nz-option *ngFor="let i of status; let idx = index" [nzLabel]="i.text" [nzValue]="idx"></nz-option>
+            </nz-select>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -74,32 +84,25 @@
     </nz-dropdown-menu>
   </ng-container>
   <div class="my-md">
-    <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message" *if="totalCallNo > 0">
+    <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
       <ng-template #message>
         已选择
-        <strong class="text-primary">{{ selectedRows.length }}</strong> 项&nbsp;
-        <!--        &nbsp; 服务调用总计 <strong>{{ totalCallNo }}</strong> 万-->
+        <strong class="text-primary">{{ selectedRows.length }}</strong> 项&nbsp;&nbsp; 服务调用总计 <strong>{{ totalCallNo }}</strong> 万
         <a *ngIf="totalCallNo > 0" (click)="st.clearCheck()" class="ml-lg">清空</a>
       </ng-template>
     </nz-alert>
   </div>
-  <st #st [columns]="columns" [data]="data" [total]="total" [page]="page" [loading]="loading" (change)="stChange($event)">
-    <ng-template st-row="state" let-i>
-      <nz-badge [nzStatus]="i.stateType" [nzText]="i.stateText"></nz-badge>
+  <st #st [columns]="columns" [data]="data" [loading]="loading" (change)="stChange($event)">
+    <ng-template st-row="status" let-i>
+      <nz-badge [nzStatus]="i.statusType" [nzText]="i.statusText"></nz-badge>
     </ng-template>
   </st>
 </nz-card>
 <ng-template #modalContent>
   <nz-form-item>
-    <nz-form-label nzFor="no">名称</nz-form-label>
-    <nz-form-control>
-      <input nz-input [(ngModel)]="createParams.name" name="school_name" placeholder="请输入" id="no" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
     <nz-form-label nzFor="no">描述</nz-form-label>
     <nz-form-control>
-      <input nz-input [(ngModel)]="createParams.detail" name="description" placeholder="请输入" id="no" />
+      <input nz-input [(ngModel)]="description" name="description" placeholder="请输入" id="no" />
     </nz-form-control>
   </nz-form-item>
 </ng-template>

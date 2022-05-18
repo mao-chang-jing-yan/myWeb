@@ -9,10 +9,10 @@ import {map, tap} from "rxjs/operators";
 import * as data from "./data"
 
 @Component({
-  selector: 'app-sys-log',
+  selector: 'app-device-log',
   templateUrl: './log.component.html',
 })
-export class SysLogComponent implements OnInit {
+export class DeviceLogComponent implements OnInit {
   q: {
     pi: number;
     ps: number;

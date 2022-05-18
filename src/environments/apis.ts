@@ -34,7 +34,7 @@ export const DeleteCollege = "/college/delete"
 
 // major 专业
 export const QueryMajor = "/major/query"
-export const CreatMajor = "/major/create"
+export const CreateMajor = "/major/create"
 export const UpdateMajor = "/major/update"
 export const DeleteMajor = "/major/delete"
 

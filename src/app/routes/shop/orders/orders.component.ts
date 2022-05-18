@@ -2,16 +2,16 @@ import {ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild} from '@ang
 import {STChange, STColumn, STComponent, STData, STPage, STRes} from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
-import {environment} from "@env/environment";
 import {NzSafeAny} from "ng-zorro-antd/core/types";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {environment} from "@env/environment";
 
 @Component({
-  selector: 'app-shop-shops',
-  templateUrl: './shops.component.html',
+  selector: 'app-shop-orders',
+  templateUrl: './orders.component.html',
 })
-export class ShopShopsComponent implements OnInit {
+export class ShopOrdersComponent implements OnInit {
   q: {
     create_by: string;
     name: string;
@@ -104,7 +104,7 @@ export class ShopShopsComponent implements OnInit {
   }
 
   getData(): void {
-    let url = environment["apis"]["webBase"] + environment["apis"]["QueryShop"];
+    let url = environment["apis"]["webBase"] + environment["apis"]["QueryProduct"];
     this.loading = true;
     this.q.statusList = this.status.filter(w => w.checked).map(item => item.index);
     if (this.q.status !== null && this.q.status > -1) {
@@ -164,7 +164,7 @@ export class ShopShopsComponent implements OnInit {
   }
 
   remove(): void {
-    let url = environment["apis"]["webBase"] + environment["apis"]["DeleteShop"];
+    let url = environment["apis"]["webBase"] + environment["apis"]["DeleteProduct"];
     this.http.delete(url, {ids: this.selectedRows.map(i => i['id']).join(',')}).subscribe(() => {
       this.getData();
       this.st.clearCheck();
@@ -181,7 +181,7 @@ export class ShopShopsComponent implements OnInit {
       nzContent: tpl,
       nzOnOk: () => {
         this.loading = true;
-        let url = environment["apis"]["webBase"] + environment["apis"]["CreateShop"];
+        let url = environment["apis"]["webBase"] + environment["apis"]["CreateProduct"];
         this.http.post(url, this.createParams).subscribe(() => this.getData());
       }
     });

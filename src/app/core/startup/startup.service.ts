@@ -182,6 +182,10 @@ export class StartupService {
                 text:"产品列表",
                 link: "/shop/products",
               },
+              {
+                text:"订单列表",
+                link: "/shop/orders",
+              },
             ]
           },
           {
@@ -209,7 +213,17 @@ export class StartupService {
           {
             text: '设备管理',
             link: '/device',
-            icon: {type: 'icon', value: 'appstore'}
+            icon: {type: 'icon', value: 'appstore'},
+            children:[
+              {
+                text:"设备列表",
+                link: "/device/devices",
+              },
+              {
+                text:"设备日志",
+                link: "/device/logs",
+              },
+            ]
           },
 
         ]
