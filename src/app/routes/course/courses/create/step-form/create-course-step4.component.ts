@@ -15,7 +15,7 @@ import {STColumn, STComponent, STRes} from "@delon/abc/st";
 })
 export class CreateCourseStep4Component implements OnInit {
   isVisible = false;
-  url = environment["apis"]["webBase"] + environment["apis"]["QueryUsers"];
+  url = environment["apis"]["webBase"] + environment["apis"]["Users"];
   searchSchema: SFSchema = {
     properties: {
       name: {

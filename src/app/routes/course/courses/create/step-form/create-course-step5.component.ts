@@ -29,6 +29,8 @@ export class CreateCourseStep5Component implements OnInit {
     this.form = this.fb.group({
       name: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
       detail: [null, Validators.compose([Validators.required, Validators.minLength(1)])],
+      credit: [null, Validators.compose([Validators.required, Validators.min(0.1), Validators.max(10)])],
+      grade_point: [null, Validators.compose([Validators.required, Validators.min(0.1), Validators.max(10)])],
     });
     this.form.patchValue(this.item);
   }
@@ -45,6 +47,8 @@ export class CreateCourseStep5Component implements OnInit {
     this.loading = true;
     this.srv.name = this.form.get("name")?.value;
     this.srv.detail = this.form.get("detail")?.value;
+    this.srv.credit = this.form.get("credit")?.value;
+    this.srv.grade_point = this.form.get("grade_point")?.value;
     // console.log(this.name, this.detail)
     let url = environment["apis"]["webBase"] + environment["apis"]["CreateCourse"];
     this.http.post(url, {
@@ -54,8 +58,11 @@ export class CreateCourseStep5Component implements OnInit {
       teacher_id: this.srv.teacher_id,
       name: this.srv.name,
       detail: this.srv.detail,
+      credit: this.srv.credit,
+      grade_point: this.srv.grade_point,
     }).pipe().subscribe((r) => {
-      if (!r.res) {
+      console.log("create course", r)
+      if (!r.status) {
         this.loading = false;
         ++this.item.step;
         this.cdr.detectChanges();

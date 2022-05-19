@@ -16,6 +16,8 @@ export class CourseCreateTransferService {
   name = '';
   detail = '';
   createPageCdr: any = null;
+  grade_point: number = 1;
+  credit: number = 1;
 
   again(): void {
     this.step = 0;

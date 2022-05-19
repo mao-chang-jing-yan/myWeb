@@ -17,6 +17,7 @@ import {CreateProductStep1Component} from "./products/create/step-form/create-pr
 import {CreateProductStep2Component} from "./products/create/step-form/create-product-step2.component";
 import {CreateProductStep3Component} from "./products/create/step-form/create-product-step3.component";
 import {ProductCreateTransferService} from "./products/create/step-form/product-create-transfer.service";
+import { NzUploadModule } from 'ng-zorro-antd/upload';
 
 const COMPONENTS: Type<void>[] = [
   ShopShopsComponent,
@@ -41,6 +42,7 @@ const COMPONENTS: Type<void>[] = [
     NzBadgeModule,
     NzDatePickerModule,
     NzStepsModule,
+    NzUploadModule,
   ],
   providers:[
     ShopCreateTransferService,

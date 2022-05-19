@@ -51,7 +51,7 @@ export class CreateShopStep2Component implements OnInit {
       name: this.srv.name,
       detail: this.srv.detail,
     }).pipe().subscribe((r) => {
-      if (!r.res) {
+      if (!r.status) {
         this.loading = false;
         ++this.item.step;
         this.cdr.detectChanges();

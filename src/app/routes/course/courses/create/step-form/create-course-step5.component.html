@@ -18,6 +18,13 @@
       <input nz-input formControlName="detail" />
     </se>
 
+    <se label="学分" error="请输入学分,0.1-10" required>
+      <input nz-input type="number" formControlName="credit" />
+    </se>
+    <se label="绩点" error="请输入绩点,0.1-10" required>
+      <input nz-input type="number" formControlName="grade_point" />
+    </se>
+
     <se>
       <button nz-button [nzType]="'primary'" [nzLoading]="loading" [disabled]="form.invalid">提交</button>
       <button nz-button (click)="prev()">上一步</button>
