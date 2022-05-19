@@ -7,6 +7,7 @@ import {CourseCreateTransferService} from "./step-form/course-create-transfer.se
 @Component({
   selector: 'app-sys-users-create',
   templateUrl: './create.component.html',
+  styleUrls: ['./create.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 
 })

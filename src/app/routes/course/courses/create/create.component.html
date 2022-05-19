@@ -24,6 +24,7 @@
     <nz-step nzTitle="选择学校"></nz-step>
     <nz-step nzTitle="选择学院"></nz-step>
     <nz-step nzTitle="选择专业"></nz-step>
+    <nz-step nzTitle="选择教师"></nz-step>
     <nz-step nzTitle="填写课程基本信息"></nz-step>
     <nz-step nzTitle="完成"></nz-step>
   </nz-steps>
@@ -32,4 +33,5 @@
   <app-course-courses-create-step3 *ngIf="item.step === 2"></app-course-courses-create-step3>
   <app-course-courses-create-step4 *ngIf="item.step === 3"></app-course-courses-create-step4>
   <app-course-courses-create-step5 *ngIf="item.step === 4"></app-course-courses-create-step5>
+  <app-course-courses-create-step6 *ngIf="item.step === 5"></app-course-courses-create-step6>
 </nz-card>

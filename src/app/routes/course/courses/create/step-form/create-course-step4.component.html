@@ -1,24 +1,15 @@
-<form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
-  <div se-container="1" labelWidth="100">
-    <!--    <nz-alert-->
-    <!--      class="pb-lg"-->
-    <!--      [nzMessage]="'确认转账后，资金将直接打入对方账户，无法退回。'"-->
-    <!--      [nzShowIcon]="true"-->
-    <!--      [nzCloseable]="true"-->
-    <!--    ></nz-alert>-->
-    <se label="学校名称"><strong class="text-lg">{{ item.school_name }}</strong></se>
-    <se label="学院名称"><strong class="text-lg">{{ item.college_name }}</strong></se>
-
-    <se label="专业名称" required error="请输入专业名称，至少1个字符以上" class="border-top-1 pt-lg">
-      <input nz-input formControlName="name" />
-    </se>
-    <se label="详细介绍" error="请输入专业简介，至少1个字符以上" required>
-      <input nz-input formControlName="detail" />
-    </se>
-
-    <se>
-      <button nz-button [nzType]="'primary'" [nzLoading]="loading" [disabled]="form.invalid">提交</button>
-      <button nz-button (click)="prev()">上一步</button>
-    </se>
-  </div>
-</form>
+<nz-card>
+  <!--  <div class="mb-md">-->
+  <!--    <input nz-input aria-label="sfddsf" [(ngModel)]="params.name" name="name" nzPlaceHolder="请输入姓名" style="width: 100px;" class="mr-sm" />-->
+  <!--    <button nz-button (click)="st.load(1)" [nzType]="'primary'">搜索</button>-->
+  <!--    <button nz-button (click)="params = {}; st.reset(); st.load(1)">重置</button>-->
+  <!--  </div>-->
+  <sf mode="search"
+      [schema]="searchSchema"
+      (formSubmit)="st.reset($event)"
+      (formReset)="st.reset($event)"
+      [button]="button"
+  >
+  </sf>
+  <st #st [data]="url" [res]="res" [columns]="columns"></st>
+</nz-card>

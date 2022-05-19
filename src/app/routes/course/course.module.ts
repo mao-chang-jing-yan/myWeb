@@ -12,6 +12,7 @@ import {CreateCourseStep4Component} from "./courses/create/step-form/create-cour
 import {CreateCourseStep5Component} from "./courses/create/step-form/create-course-step5.component";
 import {CourseCreateTransferService} from "./courses/create/step-form/course-create-transfer.service";
 import {CourseCoursesCreateComponent} from "./courses/create/create.component";
+import {CreateCourseStep6Component} from "./courses/create/step-form/create-course-step6.component";
 
 const COMPONENTS: Type<void>[] = [
   CourseCoursesComponent,
@@ -20,6 +21,7 @@ const COMPONENTS: Type<void>[] = [
   CreateCourseStep3Component,
   CreateCourseStep4Component,
   CreateCourseStep5Component,
+  CreateCourseStep6Component,
   CourseCoursesCreateComponent,
 ];
 

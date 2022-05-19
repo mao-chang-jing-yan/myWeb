@@ -10,6 +10,8 @@ export class CourseCreateTransferService {
   college_name = '';
   major_id = '';
   major_name = '';
+  teacher_id = '';
+  teacher_name = '';
 
   name = '';
   detail = '';
@@ -23,6 +25,10 @@ export class CourseCreateTransferService {
     this.college_name = '';
     this.major_id = '';
     this.major_name = '';
+    this.teacher_id = '';
+    this.teacher_name = '';
+
+
     this.name = '';
     this.detail = '';
   }
