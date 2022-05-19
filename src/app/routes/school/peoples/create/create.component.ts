@@ -1,21 +1,20 @@
 import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild} from "@angular/core";
-
 import {Router} from "@angular/router";
-import {ShopCreateTransferService} from "./step-form/shop-create-transfer.service";
+import {PeopleCreateTransferService} from "./step-form/people-create-transfer.service";
 
 @Component({
-  selector: 'app-shop-shops-create',
+  selector: 'app-school-peoples-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 
 })
-export class ShopShopsCreateComponent implements AfterViewInit {
-  get item(): ShopCreateTransferService {
+export class SchoolPeoplesCreateComponent implements AfterViewInit {
+  get item(): PeopleCreateTransferService {
     return this.srv;
   }
 
-  constructor(private srv: ShopCreateTransferService, private cdr: ChangeDetectorRef,private router: Router,) {
+  constructor(private srv: PeopleCreateTransferService, private cdr: ChangeDetectorRef,private router: Router,) {
     this.item.again();
     this.srv.createPageCdr = this.cdr;
   }
@@ -29,7 +28,7 @@ export class ShopShopsCreateComponent implements AfterViewInit {
   }
 
   cancel(){
-    this.router.navigateByUrl("/shop/shops").then(r => {
+    this.router.navigateByUrl("/school/peoples").then(r => {
     })
   }
 

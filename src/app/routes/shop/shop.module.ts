@@ -7,11 +7,21 @@ import {NzBadgeModule} from "ng-zorro-antd/badge";
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzStepsModule} from "ng-zorro-antd/steps";
 import {ShopOrdersComponent} from "./orders/orders.component";
+import {ShopShopsCreateComponent} from "./shops/create/create.component";
+import {CreateShopStep2Component} from "./shops/create/step-form/create-shop-step2.component";
+import {CreateShopStep3Component} from "./shops/create/step-form/create-shop-step3.component";
+import {CreateShopStep1Component} from "./shops/create/step-form/create-shop-step1.component";
+import {ShopCreateTransferService} from "./shops/create/step-form/shop-create-transfer.service";
 
 const COMPONENTS: Type<void>[] = [
   ShopShopsComponent,
   ShopProductsComponent,
   ShopOrdersComponent,
+
+  ShopShopsCreateComponent,
+  CreateShopStep1Component,
+  CreateShopStep2Component,
+  CreateShopStep3Component,
 ];
 
 @NgModule({
@@ -21,6 +31,9 @@ const COMPONENTS: Type<void>[] = [
     NzBadgeModule,
     NzDatePickerModule,
     NzStepsModule,
+  ],
+  providers:[
+    ShopCreateTransferService,
   ],
   declarations: COMPONENTS,
 })

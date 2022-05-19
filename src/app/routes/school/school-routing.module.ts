@@ -8,7 +8,8 @@ import {SchoolSchoolsCreateComponent} from "./schools/create/create.component";
 import {SchoolCollegesCreateComponent} from "./colleges/create/create.component";
 import {SchoolCollegesEditComponent} from "./colleges/edit/edit.component";
 import {SchoolMajorCreateComponent} from "./majors/create/create.component";
-import {SchoolPeoelesComponent} from "./peoples/peoples.component";
+import {SchoolPeoplesComponent} from "./peoples/peoples.component";
+import {SchoolPeoplesCreateComponent} from "./peoples/create/create.component";
 
 const routes: Routes = [
 
@@ -35,7 +36,12 @@ const routes: Routes = [
     ]
   },
   {
-    path: "peoples", component: SchoolPeoelesComponent,
+    path: "peoples",
+    children: [
+      {path: '', data: {title: "list"}, pathMatch: "full", component: SchoolPeoplesComponent},
+      // {path: 'update', data: {title: "update"}, component: SchoolCollegesEditComponent},
+      {path: 'create', data: {title: "create"}, component: SchoolPeoplesCreateComponent},
+    ]
   }
   ];
 

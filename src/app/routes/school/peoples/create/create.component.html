@@ -1,9 +1,9 @@
-<page-header [title]="'创建学院'" [recursiveBreadcrumb]=true [action]="action">
+<page-header [title]="'创建用户'" [recursiveBreadcrumb]=true [action]="action">
 
   <ng-template #action>
     <nz-button-group>
       <!--          <button nz-button>前一步</button>-->
-      <button nz-button (click)="pre()" *ngIf="item.step<3">上一步</button>
+      <button nz-button (click)="pre()" *ngIf="item.step<4">上一步</button>
     </nz-button-group>
     <button nz-button nz-dropdown [nzDropdownMenu]="opMenu" class="mx-sm">
       <i nz-icon nzType="ellipsis"></i>
@@ -24,12 +24,12 @@
     <nz-step nzTitle="选择学校"></nz-step>
     <nz-step nzTitle="选择学院"></nz-step>
     <nz-step nzTitle="选择专业"></nz-step>
-    <nz-step nzTitle="填写课程基本信息"></nz-step>
+    <nz-step nzTitle="填写人员基本信息"></nz-step>
     <nz-step nzTitle="完成"></nz-step>
   </nz-steps>
-  <app-course-courses-create-step1 *ngIf="item.step === 0"></app-course-courses-create-step1>
-  <app-course-courses-create-step2 *ngIf="item.step === 1"></app-course-courses-create-step2>
-  <app-course-courses-create-step3 *ngIf="item.step === 2"></app-course-courses-create-step3>
-  <app-course-courses-create-step4 *ngIf="item.step === 3"></app-course-courses-create-step4>
-  <app-course-courses-create-step5 *ngIf="item.step === 4"></app-course-courses-create-step5>
+  <app-school-peoples-create-step1 *ngIf="item.step === 0"></app-school-peoples-create-step1>
+  <app-school-peoples-create-step2 *ngIf="item.step === 1"></app-school-peoples-create-step2>
+  <app-school-peoples-create-step3 *ngIf="item.step === 2"></app-school-peoples-create-step3>
+  <app-school-peoples-create-step4 *ngIf="item.step === 3"></app-school-peoples-create-step4>
+  <app-school-peoples-create-step5 *ngIf="item.step === 4"></app-school-peoples-create-step5>
 </nz-card>

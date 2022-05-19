@@ -6,6 +6,7 @@ import {environment} from "@env/environment";
 import {NzSafeAny} from "ng-zorro-antd/core/types";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-course-courses',
@@ -102,7 +103,13 @@ export class CourseCoursesComponent implements OnInit {
     showSize: true
   }
 
-  constructor(private http: _HttpClient, public msg: NzMessageService, private modalSrv: NzModalService, private cdr: ChangeDetectorRef) {
+  constructor(
+    private http: _HttpClient,
+    public msg: NzMessageService,
+    private modalSrv: NzModalService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
   }
 
   ngOnInit(): void {
@@ -182,15 +189,18 @@ export class CourseCoursesComponent implements OnInit {
   }
 
   add(tpl: TemplateRef<{}>): void {
-    this.modalSrv.create({
-      nzTitle: '新建学校',
-      nzContent: tpl,
-      nzOnOk: () => {
-        this.loading = true;
-        let url = environment["apis"]["webBase"] + environment["apis"]["CreateCourse"];
-        this.http.post(url, this.createParams).subscribe(() => this.getData());
-      }
-    });
+    this.router.navigateByUrl("/course/courses/create").then(r => {
+    })
+
+    // this.modalSrv.create({
+    //   nzTitle: '新建学校',
+    //   nzContent: tpl,
+    //   nzOnOk: () => {
+    //     this.loading = true;
+    //     let url = environment["apis"]["webBase"] + environment["apis"]["CreateCourse"];
+    //     this.http.post(url, this.createParams).subscribe(() => this.getData());
+    //   }
+    // });
   }
 
   reset(): void {

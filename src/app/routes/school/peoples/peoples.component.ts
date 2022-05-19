@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
   selector: 'app-school-peoples',
   templateUrl: './peoples.component.html',
 })
-export class SchoolPeoelesComponent implements OnInit {
+export class SchoolPeoplesComponent implements OnInit {
   q: {
     create_by: string;
     name: string;
@@ -179,7 +179,7 @@ export class SchoolPeoelesComponent implements OnInit {
   }
 
   add(tpl: TemplateRef<{}>): void {
-    this.router.navigateByUrl("/school/majors/create").then(r => {
+    this.router.navigateByUrl("/school/peoples/create").then(r => {
     })
     // this.modalSrv.create({
     //   nzTitle: '新建专业',
