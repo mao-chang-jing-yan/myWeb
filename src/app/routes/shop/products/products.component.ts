@@ -6,6 +6,7 @@ import {NzSafeAny} from "ng-zorro-antd/core/types";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {environment} from "@env/environment";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shop-products',
@@ -101,7 +102,7 @@ export class ShopProductsComponent implements OnInit {
     showSize: true
   }
 
-  constructor(private http: _HttpClient, public msg: NzMessageService, private modalSrv: NzModalService, private cdr: ChangeDetectorRef) {
+  constructor(private router: Router, private http: _HttpClient, public msg: NzMessageService, private modalSrv: NzModalService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -181,15 +182,17 @@ export class ShopProductsComponent implements OnInit {
   }
 
   add(tpl: TemplateRef<{}>): void {
-    this.modalSrv.create({
-      nzTitle: '新建学校',
-      nzContent: tpl,
-      nzOnOk: () => {
-        this.loading = true;
-        let url = environment["apis"]["webBase"] + environment["apis"]["CreateProduct"];
-        this.http.post(url, this.createParams).subscribe(() => this.getData());
-      }
-    });
+    this.router.navigateByUrl("/shop/products/create").then(r => {
+    })
+    // this.modalSrv.create({
+    //   nzTitle: '新建学校',
+    //   nzContent: tpl,
+    //   nzOnOk: () => {
+    //     this.loading = true;
+    //     let url = environment["apis"]["webBase"] + environment["apis"]["CreateProduct"];
+    //     this.http.post(url, this.createParams).subscribe(() => this.getData());
+    //   }
+    // });
   }
 
   reset(): void {

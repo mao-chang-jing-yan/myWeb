@@ -12,6 +12,11 @@ import {CreateShopStep2Component} from "./shops/create/step-form/create-shop-ste
 import {CreateShopStep3Component} from "./shops/create/step-form/create-shop-step3.component";
 import {CreateShopStep1Component} from "./shops/create/step-form/create-shop-step1.component";
 import {ShopCreateTransferService} from "./shops/create/step-form/shop-create-transfer.service";
+import {ShopProductsCreateComponent} from "./products/create/create.component";
+import {CreateProductStep1Component} from "./products/create/step-form/create-product-step1.component";
+import {CreateProductStep2Component} from "./products/create/step-form/create-product-step2.component";
+import {CreateProductStep3Component} from "./products/create/step-form/create-product-step3.component";
+import {ProductCreateTransferService} from "./products/create/step-form/product-create-transfer.service";
 
 const COMPONENTS: Type<void>[] = [
   ShopShopsComponent,
@@ -22,6 +27,11 @@ const COMPONENTS: Type<void>[] = [
   CreateShopStep1Component,
   CreateShopStep2Component,
   CreateShopStep3Component,
+
+  ShopProductsCreateComponent,
+  CreateProductStep1Component,
+  CreateProductStep2Component,
+  CreateProductStep3Component,
 ];
 
 @NgModule({
@@ -34,6 +44,7 @@ const COMPONENTS: Type<void>[] = [
   ],
   providers:[
     ShopCreateTransferService,
+    ProductCreateTransferService,
   ],
   declarations: COMPONENTS,
 })

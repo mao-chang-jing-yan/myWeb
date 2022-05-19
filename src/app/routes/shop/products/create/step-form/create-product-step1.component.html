@@ -1,0 +1,17 @@
+<nz-card>
+  <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+  <st #st [data]="url" [res]="res" [columns]="columns"></st>
+</nz-card>
+
+
+<!--<div class="border-top-1 mt-lg px-lg text-grey-dark">-->
+<!--  <h3 class="h3 my-md">说明</h3>-->
+<!--  <h4 class="h4 mb-sm">转账到支付宝账户</h4>-->
+<!--  <p class="mb-sm">-->
+<!--    如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。-->
+<!--  </p>-->
+<!--  <h4 class="h4 mb-sm">转账到银行卡</h4>-->
+<!--  <p>-->
+<!--    如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。如果需要，这里可以放一些关于产品的常见问题说明。-->
+<!--  </p>-->
+<!--</div>-->

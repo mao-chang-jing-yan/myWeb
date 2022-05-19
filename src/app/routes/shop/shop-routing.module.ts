@@ -4,6 +4,7 @@ import {ShopShopsComponent} from './shops/shops.component';
 import {ShopProductsComponent} from './products/products.component';
 import {ShopOrdersComponent} from "./orders/orders.component";
 import {ShopShopsCreateComponent} from "./shops/create/create.component";
+import {ShopProductsCreateComponent} from "./products/create/create.component";
 
 const routes: Routes = [
 
@@ -15,7 +16,13 @@ const routes: Routes = [
     ]
 
   },
-  {path: 'products', component: ShopProductsComponent},
+  {
+    path: 'products',
+    children: [
+      {path: "", pathMatch: "full", component: ShopProductsComponent},
+      {path: "create", component: ShopProductsCreateComponent},
+    ]
+  },
   {path: 'orders', component: ShopOrdersComponent},
 ];
 

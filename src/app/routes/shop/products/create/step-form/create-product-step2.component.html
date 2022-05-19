@@ -1,0 +1,24 @@
+<form nz-form [formGroup]="form" (ngSubmit)="_submitForm()">
+  <div se-container="1" labelWidth="100">
+    <!--    <nz-alert-->
+    <!--      class="pb-lg"-->
+    <!--      [nzMessage]="'确认转账后，资金将直接打入对方账户，无法退回。'"-->
+    <!--      [nzShowIcon]="true"-->
+    <!--      [nzCloseable]="true"-->
+    <!--    ></nz-alert>-->
+    <se label="商店名称"><strong class="text-lg">{{ item.shop_name }}</strong></se>
+
+    <se label="商品名称" required error="请输入商品名称，至少1个字符以上" class="border-top-1 pt-lg">
+      <input nz-input formControlName="name"/>
+    </se>
+
+    <se label="商品简介" error="请输入商品简介，至少1个字符以上" required>
+      <input nz-input formControlName="detail"/>
+    </se>
+
+    <se>
+      <button nz-button [nzType]="'primary'" [nzLoading]="loading" [disabled]="form.invalid">提交</button>
+      <button nz-button (click)="prev()">上一步</button>
+    </se>
+  </div>
+</form>
