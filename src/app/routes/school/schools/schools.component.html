@@ -1,4 +1,22 @@
-<page-header [title]="'查询表格'"></page-header>
+<page-header [title]="'学校列表'" [action]="action">
+  <ng-template #action>
+    <!--    <nz-button-group>-->
+    <!--                <button nz-button>前一步</button>-->
+    <!--      <button nz-button (click)="pre()">上一步</button>-->
+    <!--    </nz-button-group>-->
+    <!--    <button nz-button nz-dropdown [nzDropdownMenu]="opMenu" class="mx-sm">-->
+    <!--      <i nz-icon nzType="ellipsis"></i>-->
+    <!--    </button>-->
+    <!--    <nz-dropdown-menu #opMenu="nzDropdownMenu">-->
+    <!--      <ul nz-menu>-->
+    <!--        <li nz-menu-item>选项一</li>-->
+    <!--        <li nz-menu-item>选项二</li>-->
+    <!--        <li nz-menu-item>选项三</li>-->
+    <!--      </ul>-->
+    <!--    </nz-dropdown-menu>-->
+    <button nz-button [nzType]="'primary'" (click)="add(modalContent)">新建</button>
+  </ng-template>
+</page-header>
 <nz-card [nzBordered]="false">
   <form nz-form [nzLayout]="'inline'" (ngSubmit)="getData()" class="search__form">
     <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
@@ -56,10 +74,10 @@
       </div>
     </div>
   </form>
-  <button nz-button (click)="add(modalContent)" [nzType]="'primary'">
-    <i nz-icon nzType="plus"></i>
-    <span>新建</span>
-  </button>
+<!--  <button nz-button (click)="add(modalContent)" [nzType]="'primary'">-->
+<!--    <i nz-icon nzType="plus"></i>-->
+<!--    <span>新建</span>-->
+<!--  </button>-->
   <ng-container *ngIf="selectedRows.length > 0">
     <button nz-button>批量操作</button>
     <button nz-button nz-dropdown [nzDropdownMenu]="batchMenu" nzPlacement="bottomLeft">

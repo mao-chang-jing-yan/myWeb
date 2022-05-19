@@ -8,6 +8,7 @@ import {SchoolSchoolsCreateComponent} from "./schools/create/create.component";
 import {SchoolCollegesCreateComponent} from "./colleges/create/create.component";
 import {SchoolCollegesEditComponent} from "./colleges/edit/edit.component";
 import {SchoolMajorCreateComponent} from "./majors/create/create.component";
+import {SchoolPeoelesComponent} from "./peoples/peoples.component";
 
 const routes: Routes = [
 
@@ -33,6 +34,9 @@ const routes: Routes = [
       {path: 'create', data: {title: "create"}, component: SchoolMajorCreateComponent},
     ]
   },
+  {
+    path: "peoples", component: SchoolPeoelesComponent,
+  }
   ];
 
 @NgModule({

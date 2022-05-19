@@ -14,6 +14,8 @@ export class CollegeCreateTransferService {
     this.step = 0;
     this.school_id = '';
     this.school_name = '';
+    this.name = '';
+    this.detail = '';
   }
 
   constructor() {

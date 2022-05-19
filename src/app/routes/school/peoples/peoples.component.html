@@ -1,4 +1,5 @@
-<page-header [title]="'学院列表'" [action]="action">
+<page-header [title]="'人员列表'" [action]="action">
+
   <ng-template #action>
     <!--    <nz-button-group>-->
     <!--                <button nz-button>前一步</button>-->
@@ -14,7 +15,7 @@
     <!--        <li nz-menu-item>选项三</li>-->
     <!--      </ul>-->
     <!--    </nz-dropdown-menu>-->
-    <button nz-button [nzType]="'primary'" (click)="add()">新建</button>
+    <button nz-button [nzType]="'primary'" (click)="add(modalContent)">新建</button>
   </ng-template>
 </page-header>
 <nz-card [nzBordered]="false">
@@ -74,10 +75,10 @@
       </div>
     </div>
   </form>
-<!--  <button nz-button (click)="add()" [nzType]="'primary'">-->
-<!--    <i nz-icon nzType="plus"></i>-->
-<!--    <span>新建</span>-->
-<!--  </button>-->
+  <!--  <button nz-button (click)="add(modalContent)" [nzType]="'primary'">-->
+  <!--    <i nz-icon nzType="plus"></i>-->
+  <!--    <span>新建</span>-->
+  <!--  </button>-->
   <ng-container *ngIf="selectedRows.length > 0">
     <button nz-button>批量操作</button>
     <button nz-button nz-dropdown [nzDropdownMenu]="batchMenu" nzPlacement="bottomLeft">
@@ -107,3 +108,17 @@
     </ng-template>
   </st>
 </nz-card>
+<ng-template #modalContent>
+  <nz-form-item>
+    <nz-form-label nzFor="no">名称</nz-form-label>
+    <nz-form-control>
+      <input nz-input [(ngModel)]="createParams.name" name="school_name" placeholder="请输入" id="no" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="no">描述</nz-form-label>
+    <nz-form-control>
+      <input nz-input [(ngModel)]="createParams.detail" name="description" placeholder="请输入" id="no" />
+    </nz-form-control>
+  </nz-form-item>
+</ng-template>

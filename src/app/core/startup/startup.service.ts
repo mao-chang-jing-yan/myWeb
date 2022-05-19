@@ -156,17 +156,17 @@ export class StartupService {
                 link: "/school/schools",
               },
               {
-                text:"学院",
+                text:"学院列表",
                 link: "/school/colleges",
               },
               {
-                text:"专业",
+                text:"专业列表",
                 link: "/school/majors",
               },
-              // {
-              //   text:"历史记录",
-              //   link: "/sys/log",
-              // },
+              {
+                text:"人员列表",
+                link: "/school/peoples",
+              },
             ]
           },
           {

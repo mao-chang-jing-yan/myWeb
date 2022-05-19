@@ -56,7 +56,6 @@ export class CreateCollegeStep2Component implements OnInit {
         this.item.createPageCdr.detectChanges();
       } else {
         this.loading = false;
-        ++this.item.step;
         console.log("创建失败")
       }
     });

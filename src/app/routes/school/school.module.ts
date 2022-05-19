@@ -21,6 +21,7 @@ import {CreateMajorStep3Component} from "./majors/create/step-form/create-major-
 import {MajorCreateTransferService} from "./majors/create/step-form/major-create-transfer.service";
 import {SchoolMajorCreateComponent} from "./majors/create/create.component";
 import {CreateMajorStep4Component} from "./majors/create/step-form/create-major-step4.component";
+import {SchoolPeoelesComponent} from "./peoples/peoples.component";
 
 const COMPONENTS: Type<void>[] = [
   SchoolSchoolsComponent,
@@ -40,6 +41,8 @@ const COMPONENTS: Type<void>[] = [
   CreateMajorStep2Component,
   CreateMajorStep3Component,
   CreateMajorStep4Component,
+
+  SchoolPeoelesComponent,
 ];
 
 @NgModule({

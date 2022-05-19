@@ -9,10 +9,10 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-school-majors',
-  templateUrl: './majors.component.html',
+  selector: 'app-school-peoples',
+  templateUrl: './peoples.component.html',
 })
-export class SchoolMajorsComponent implements OnInit {
+export class SchoolPeoelesComponent implements OnInit {
   q: {
     create_by: string;
     name: string;
@@ -107,7 +107,7 @@ export class SchoolMajorsComponent implements OnInit {
   }
 
   getData(): void {
-    let url = environment["apis"]["webBase"] + environment["apis"]["QueryMajor"];
+    let url = environment["apis"]["webBase"] + environment["apis"]["Users"];
     this.loading = true;
     this.q.statusList = this.status.filter(w => w.checked).map(item => item.index);
     if (this.q.status !== null && this.q.status > -1) {
@@ -167,7 +167,7 @@ export class SchoolMajorsComponent implements OnInit {
   }
 
   remove(): void {
-    let url = environment["apis"]["webBase"] + environment["apis"]["DeleteMajor"];
+    let url = environment["apis"]["webBase"] + environment["apis"]["DeleteUser"];
     this.http.delete(url, {ids: this.selectedRows.map(i => i['id']).join(',')}).subscribe(() => {
       this.getData();
       this.st.clearCheck();

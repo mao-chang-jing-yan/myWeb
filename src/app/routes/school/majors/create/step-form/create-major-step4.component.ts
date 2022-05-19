@@ -18,7 +18,7 @@ export class CreateMajorStep4Component {
   ) {}
 
   cancel() {
-    this.router.navigateByUrl("/school/colleges").then(r => {
+    this.router.navigateByUrl("/school/majors").then(r => {
     })
   }
 }
