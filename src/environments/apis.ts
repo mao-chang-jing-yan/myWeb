@@ -62,4 +62,8 @@ export const CreateProduct = "/product/create"
 export const UpdateProduct = "/product/update"
 export const DeleteProduct = "/product/delete"
 
-
+// order 订单
+export const QueryOrder  = "/order/query"
+export const CreateOrder = "/order/create"
+export const UpdateOrder = "/order/update"
+export const DeleteOrder = "/order/delete"

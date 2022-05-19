@@ -1,0 +1,12 @@
+<result type="success" [title]="'操作成功'" description="学院创建成功" [extra]="resultExtra">
+  <ng-template #resultExtra>
+    <div sv-container col="1" labelWidth="150">
+      <sv label="学校名称"><strong class="text-lg">{{ item.school_name }}</strong></sv>
+      <sv label="学院名称"><strong class="text-lg">{{ item.name }}</strong></sv>
+      <sv label="学院简介">{{ item.detail }}</sv>
+
+    </div>
+  </ng-template>
+  <button nz-button (click)="item.again()" [nzType]="'primary'">再添加一个</button>
+  <button nz-button class="ml-sm" (click)="cancel()">返回列表</button>
+</result>

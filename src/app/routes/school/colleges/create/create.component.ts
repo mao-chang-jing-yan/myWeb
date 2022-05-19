@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewChild} from "@angular/core";
-import {TransferService} from "./step-form/transfer.service";
+import {CollegeCreateTransferService} from "./step-form/college-create-transfer.service";
 
 @Component({
   selector: 'school-colleges-create',
@@ -9,11 +9,14 @@ import {TransferService} from "./step-form/transfer.service";
 
 })
 export class SchoolCollegesCreateComponent  implements AfterViewInit {
-  get item(): TransferService {
+  get item(): CollegeCreateTransferService {
     return this.srv;
   }
 
-  constructor(private srv: TransferService) {}
+  constructor(private srv: CollegeCreateTransferService, private cdr: ChangeDetectorRef) {
+    this.item.again();
+    this.srv.createPageCdr = this.cdr;
+  }
 
   ngAfterViewInit(): void {
     console.log('item', this.item);

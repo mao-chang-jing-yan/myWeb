@@ -55,7 +55,14 @@ export class ScoreScoresComponent implements OnInit {
     {title: '', index: 'key', type: 'checkbox'},
     {title: '编号', index: 'index'},
     // {title: '编号', index: 'id'},
-    {title: '名称', index: 'name'},
+    {title: '学校', index: 'school__name'},
+    {title: '学院', index: 'college__name'},
+    {title: '专业', index: 'major__name'},
+    {title: '教师', index: 'teacher__name'},
+    {title: '课程', index: 'course__name'},
+    {title: '学生', index: 'student__name'},
+    {title: '学分', index: 'credit'},
+    {title: '绩点', index: 'grade_point'},
     {title: '详情', index: 'detail'},
     {
       title: '状态',
@@ -67,7 +74,7 @@ export class ScoreScoresComponent implements OnInit {
       }
     },
 
-    {title: '创建人', index: 'create_by_title'},
+    {title: '创建人', index: 'create_by__name'},
     {title: '创建时间', type: 'date', index: 'create_at'},
     {title: '更新时间', type: 'date', index: 'update_at'},
     // {title: '删除时间', type: 'date', index: 'delete_at'},

@@ -53,6 +53,10 @@ export class SysUsersComponent implements OnInit {
     {title: '状态', index: 'state'},
     {title: '类型', index: 'type'},
 
+    {title: '学校', index: 'school__name'},
+    {title: '学院', index: 'college__name'},
+    {title: '专业', index: 'major__name'},
+
     // {title: '创建人', index: 'create_by'},
     {title: '创建时间', type: 'date', index: 'create_at'},
     // {title: '更新时间', type: 'date', index: 'update_at'},

@@ -68,7 +68,7 @@ export class SchoolSchoolsComponent implements OnInit {
       }
     },
 
-    {title: '创建人', index: 'create_by_title'},
+    {title: '创建人', index: 'create_by__name'},
     {title: '创建时间', type: 'date', index: 'create_at'},
     {title: '更新时间', type: 'date', index: 'update_at'},
     // {title: '删除时间', type: 'date', index: 'delete_at'},

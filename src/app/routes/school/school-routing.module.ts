@@ -7,6 +7,7 @@ import {SchoolSchoolsEditComponent} from "./schools/edit/edit.component";
 import {SchoolSchoolsCreateComponent} from "./schools/create/create.component";
 import {SchoolCollegesCreateComponent} from "./colleges/create/create.component";
 import {SchoolCollegesEditComponent} from "./colleges/edit/edit.component";
+import {SchoolMajorCreateComponent} from "./majors/create/create.component";
 
 const routes: Routes = [
 
@@ -25,7 +26,14 @@ const routes: Routes = [
       {path: 'create', data: {title: "create"}, component: SchoolCollegesCreateComponent},
     ]
   },
-  {path: 'majors', component: SchoolMajorsComponent}];
+  {path: 'majors',
+    children: [
+      {path: '', data: {title: "list"}, pathMatch: "full", component: SchoolMajorsComponent},
+      // {path: 'update', data: {title: "update"}, component: SchoolCollegesEditComponent},
+      {path: 'create', data: {title: "create"}, component: SchoolMajorCreateComponent},
+    ]
+  },
+  ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

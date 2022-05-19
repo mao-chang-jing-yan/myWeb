@@ -55,7 +55,13 @@ export class CourseCoursesComponent implements OnInit {
     {title: '', index: 'key', type: 'checkbox'},
     {title: '编号', index: 'index'},
     // {title: '编号', index: 'id'},
+    {title: '学校', index: 'school__name'},
+    {title: '学院', index: 'college__name'},
+    {title: '专业', index: 'major__name'},
+    {title: '教师', index: 'teacher__name'},
     {title: '名称', index: 'name'},
+    {title: '学分', index: 'credit'},
+    {title: '绩点', index: 'grade_point'},
     {title: '详情', index: 'detail'},
     {
       title: '状态',

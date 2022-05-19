@@ -11,10 +11,16 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import {SchoolCollegesCreateComponent} from "./colleges/create/create.component";
 import {SchoolCollegesEditComponent} from "./colleges/edit/edit.component";
 import {NzStepsModule} from "ng-zorro-antd/steps";
-import {Step1Component} from "./colleges/create/step-form/step1.component";
-import {Step2Component} from "./colleges/create/step-form/step2.component";
-import {Step3Component} from "./colleges/create/step-form/step3.component";
-import {TransferService} from "./colleges/create/step-form/transfer.service";
+import {CreateCollegeStep1Component} from "./colleges/create/step-form/create-college-step1.component";
+import {CreateCollegeStep2Component} from "./colleges/create/step-form/create-college-step2.component";
+import {CreateCollegeStep3Component} from "./colleges/create/step-form/create-college-step3.component";
+import {CollegeCreateTransferService} from "./colleges/create/step-form/college-create-transfer.service";
+import {CreateMajorStep1Component} from "./majors/create/step-form/create-major-step1.component";
+import {CreateMajorStep2Component} from "./majors/create/step-form/create-major-step2.component";
+import {CreateMajorStep3Component} from "./majors/create/step-form/create-major-step3.component";
+import {MajorCreateTransferService} from "./majors/create/step-form/major-create-transfer.service";
+import {SchoolMajorCreateComponent} from "./majors/create/create.component";
+import {CreateMajorStep4Component} from "./majors/create/step-form/create-major-step4.component";
 
 const COMPONENTS: Type<void>[] = [
   SchoolSchoolsComponent,
@@ -24,10 +30,16 @@ const COMPONENTS: Type<void>[] = [
   SchoolCollegesCreateComponent,
   SchoolCollegesEditComponent,
   SchoolMajorsComponent,
-  Step1Component,
-  Step2Component,
-  Step3Component,
+  SchoolMajorCreateComponent,
 
+  CreateCollegeStep1Component,
+  CreateCollegeStep2Component,
+  CreateCollegeStep3Component,
+
+  CreateMajorStep1Component,
+  CreateMajorStep2Component,
+  CreateMajorStep3Component,
+  CreateMajorStep4Component,
 ];
 
 @NgModule({
@@ -39,7 +51,8 @@ const COMPONENTS: Type<void>[] = [
     NzStepsModule,
   ],
   providers: [
-    TransferService
+    CollegeCreateTransferService,
+    MajorCreateTransferService,
   ],
   declarations: COMPONENTS,
 })

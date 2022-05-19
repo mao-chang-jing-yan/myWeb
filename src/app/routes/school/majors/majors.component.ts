@@ -6,6 +6,7 @@ import {environment} from "@env/environment";
 import {NzSafeAny} from "ng-zorro-antd/core/types";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-school-majors',
@@ -55,8 +56,11 @@ export class SchoolMajorsComponent implements OnInit {
     {title: '', index: 'key', type: 'checkbox'},
     {title: '编号', index: 'index'},
     // {title: '编号', index: 'id'},
+    {title: '学校', index: 'school__name'},
+    {title: '学院', index: 'college__name'},
     {title: '名称', index: 'name'},
     {title: '详情', index: 'detail'},
+    {title: '教师', index: 'teacher__name'},
     {
       title: '状态',
       index: 'state',
@@ -67,7 +71,7 @@ export class SchoolMajorsComponent implements OnInit {
       }
     },
 
-    {title: '创建人', index: 'create_by_title'},
+    {title: '创建人', index: 'create_by__name'},
     {title: '创建时间', type: 'date', index: 'create_at'},
     {title: '更新时间', type: 'date', index: 'update_at'},
     // {title: '删除时间', type: 'date', index: 'delete_at'},
@@ -96,7 +100,7 @@ export class SchoolMajorsComponent implements OnInit {
     showSize: true
   }
 
-  constructor(private http: _HttpClient, public msg: NzMessageService, private modalSrv: NzModalService, private cdr: ChangeDetectorRef) {
+  constructor(private router: Router,private http: _HttpClient, public msg: NzMessageService, private modalSrv: NzModalService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -176,15 +180,17 @@ export class SchoolMajorsComponent implements OnInit {
   }
 
   add(tpl: TemplateRef<{}>): void {
-    this.modalSrv.create({
-      nzTitle: '新建专业',
-      nzContent: tpl,
-      nzOnOk: () => {
-        this.loading = true;
-        let url = environment["apis"]["webBase"] + environment["apis"]["CreateMajor"];
-        this.http.post(url, this.createParams).subscribe(() => this.getData());
-      }
-    });
+    this.router.navigateByUrl("/school/majors/create").then(r => {
+    })
+    // this.modalSrv.create({
+    //   nzTitle: '新建专业',
+    //   nzContent: tpl,
+    //   nzOnOk: () => {
+    //     this.loading = true;
+    //     let url = environment["apis"]["webBase"] + environment["apis"]["CreateMajor"];
+    //     this.http.post(url, this.createParams).subscribe(() => this.getData());
+    //   }
+    // });
   }
 
   reset(): void {

@@ -55,7 +55,10 @@ export class ShopOrdersComponent implements OnInit {
     {title: '', index: 'key', type: 'checkbox'},
     {title: '编号', index: 'index'},
     // {title: '编号', index: 'id'},
-    {title: '名称', index: 'name'},
+    {title: '商店', index: 'shop__name'},
+    {title: '商品', index: 'product__name'},
+    {title: '卖家', index: 'product_user__name'},
+
     {title: '详情', index: 'detail'},
     {
       title: '状态',
@@ -67,7 +70,7 @@ export class ShopOrdersComponent implements OnInit {
       }
     },
 
-    {title: '创建人', index: 'create_by_title'},
+    {title: '创建人', index: 'create_by__name'},
     {title: '创建时间', type: 'date', index: 'create_at'},
     {title: '更新时间', type: 'date', index: 'update_at'},
     // {title: '删除时间', type: 'date', index: 'delete_at'},
@@ -104,7 +107,7 @@ export class ShopOrdersComponent implements OnInit {
   }
 
   getData(): void {
-    let url = environment["apis"]["webBase"] + environment["apis"]["QueryProduct"];
+    let url = environment["apis"]["webBase"] + environment["apis"]["QueryOrder"];
     this.loading = true;
     this.q.statusList = this.status.filter(w => w.checked).map(item => item.index);
     if (this.q.status !== null && this.q.status > -1) {
@@ -164,7 +167,7 @@ export class ShopOrdersComponent implements OnInit {
   }
 
   remove(): void {
-    let url = environment["apis"]["webBase"] + environment["apis"]["DeleteProduct"];
+    let url = environment["apis"]["webBase"] + environment["apis"]["DeleteOrder"];
     this.http.delete(url, {ids: this.selectedRows.map(i => i['id']).join(',')}).subscribe(() => {
       this.getData();
       this.st.clearCheck();
@@ -181,7 +184,7 @@ export class ShopOrdersComponent implements OnInit {
       nzContent: tpl,
       nzOnOk: () => {
         this.loading = true;
-        let url = environment["apis"]["webBase"] + environment["apis"]["CreateProduct"];
+        let url = environment["apis"]["webBase"] + environment["apis"]["CreateOrder"];
         this.http.post(url, this.createParams).subscribe(() => this.getData());
       }
     });

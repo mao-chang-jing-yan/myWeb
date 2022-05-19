@@ -55,6 +55,7 @@ export class ShopProductsComponent implements OnInit {
     {title: '', index: 'key', type: 'checkbox'},
     {title: '编号', index: 'index'},
     // {title: '编号', index: 'id'},
+    {title: '商店', index: 'shop__name'},
     {title: '名称', index: 'name'},
     {title: '详情', index: 'detail'},
     {
@@ -67,7 +68,11 @@ export class ShopProductsComponent implements OnInit {
       }
     },
 
-    {title: '创建人', index: 'create_by_title'},
+    {title: '价格', index: 'price'},
+    {title: '原价', index: 'old_price'},
+
+
+    {title: '创建人', index: 'create_by__name'},
     {title: '创建时间', type: 'date', index: 'create_at'},
     {title: '更新时间', type: 'date', index: 'update_at'},
     // {title: '删除时间', type: 'date', index: 'delete_at'},
