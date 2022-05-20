@@ -6,10 +6,11 @@
   <!--  </div>-->
   <sf mode="search"
       [schema]="searchSchema"
+      [formData]="formData"
       (formSubmit)="st.reset($event)"
       (formReset)="st.reset($event)"
       [button]="button"
   >
   </sf>
-  <st #st [data]="url" [res]="res" [columns]="columns"></st>
+  <st #st [data]="url" [res]="res" [req]="q" [columns]="columns"></st>
 </nz-card>

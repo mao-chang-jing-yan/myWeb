@@ -6,7 +6,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/form
 import {_HttpClient, ModalHelper} from "@delon/theme";
 import {environment} from "@env/environment";
 import {SFButton, SFSchema} from "@delon/form";
-import {STColumn, STComponent, STRes} from "@delon/abc/st";
+import {STColumn, STComponent, STReq, STRes} from "@delon/abc/st";
 
 @Component({
   selector: 'app-course-courses-create-step4',
@@ -32,6 +32,16 @@ export class CreateCourseStep4Component implements OnInit {
       }
     }
   };
+
+  q: STReq = {
+    params: {
+      type: 4,
+    }
+  };
+
+  formData = {
+    type: 4,
+  }
 
   @ViewChild('st') private readonly st!: STComponent;
   columns: STColumn[] = [
@@ -96,8 +106,10 @@ export class CreateCourseStep4Component implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.formData.type = 4;
+    this.st.reset();
     this.st.load(1)
-    this.cdr.detectChanges()
+    this.cdr.detectChanges();
 
   }
 

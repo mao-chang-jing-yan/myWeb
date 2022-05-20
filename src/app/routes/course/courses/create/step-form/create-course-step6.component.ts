@@ -18,7 +18,7 @@ export class CreateCourseStep6Component {
   ) {}
 
   cancel() {
-    this.router.navigateByUrl("/school/majors").then(r => {
+    this.router.navigateByUrl("/course/courses").then(r => {
     })
   }
 }
