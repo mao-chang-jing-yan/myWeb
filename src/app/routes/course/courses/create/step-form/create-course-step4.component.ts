@@ -25,6 +25,10 @@ export class CreateCourseStep4Component implements OnInit {
       nick_name: {
         type: 'string',
         title: '昵称'
+      },
+      type: {
+        type: 'number',
+        title: '类型'
       }
     }
   };

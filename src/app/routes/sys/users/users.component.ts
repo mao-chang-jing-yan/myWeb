@@ -86,7 +86,7 @@ export class SysUsersComponent implements OnInit {
           // component: FormEditComponent,
           // click: 'reload'
           click: (item: any) => {
-            this.http.delete(environment["apis"]["webBase"] + environment["apis"]["DeleteUser"] + "?id=" + item.id).subscribe(r=>{
+            this.http.delete(environment["apis"]["webBase"] + environment["apis"]["DeleteUser"] + "?id=" + item.id).subscribe((r:any)=>{
               this.st.reload()
             })
           }

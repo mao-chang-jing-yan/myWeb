@@ -33,7 +33,7 @@
     </se>
 
     <se>
-      <button nz-button [nzType]="'primary'" [nzLoading]="loading" [disabled]="form.invalid && fileList1.length >0">提交
+      <button nz-button [nzType]="'primary'" [nzLoading]="loading" [disabled]="form.invalid || !hasFileId()">提交
       </button>
       <button nz-button (click)="prev()">上一步</button>
     </se>

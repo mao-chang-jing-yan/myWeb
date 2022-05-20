@@ -57,10 +57,19 @@ export class CreateProductStep2Component implements OnInit {
 
   //#endregion
 
+  hasFileId(){
+    return this.fileList1.length > 0 && this.fileList1[0].response && this.fileList1[0].response.file_id
+  }
 
   _submitForm(): void {
-    console.log(this.fileList1)
-    return
+    let file_id = "";
+    if (this.hasFileId()){
+      file_id = this.fileList1[0].response.file_id;
+    } else {
+      return;
+    }
+    console.log(this.fileList1, file_id)
+    // return
     this.loading = true;
     this.srv.name = this.form.get("name")?.value;
     this.srv.detail = this.form.get("detail")?.value;
@@ -70,7 +79,8 @@ export class CreateProductStep2Component implements OnInit {
       shop_id: this.srv.shop_id,
       name: this.srv.name,
       detail: this.srv.detail,
-    }).pipe().subscribe((r) => {
+      img_url: file_id,
+    }).pipe().subscribe((r: any) => {
       if (!r.res) {
         this.loading = false;
         ++this.item.step;
@@ -96,6 +106,6 @@ export class CreateProductStep2Component implements OnInit {
   }
 
   handleChange(info: NzUploadChangeParam) {
-    console.log(info, this.fileList1)
+    console.log(1 , info, this.fileList1)
   }
 }

@@ -54,6 +54,7 @@ export class ShopProductsComponent implements OnInit {
   st!: STComponent;
   columns: STColumn[] = [
     {title: '', index: 'key', type: 'checkbox'},
+    {title: '头像', type: 'img', width: '10px', index: 'img_url'},
     {title: '编号', index: 'index'},
     // {title: '编号', index: 'id'},
     {title: '商店', index: 'shop__name'},
@@ -129,7 +130,7 @@ export class ShopProductsComponent implements OnInit {
         // ),
         // tap(() => (this.loading = false)),
       )
-      .subscribe(res => {
+      .subscribe((res: any) => {
         console.log(res)
         // this.page.total = res.total;
         this.total = res.total;
