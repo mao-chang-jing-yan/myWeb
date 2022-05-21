@@ -54,7 +54,7 @@ export class ShopProductsComponent implements OnInit {
   st!: STComponent;
   columns: STColumn[] = [
     {title: '', index: 'key', type: 'checkbox'},
-    {title: '头像', type: 'img', width: '10px', index: 'img_url'},
+    {title: '图片', type: 'img', width: '10px', index: 'img_url'},
     {title: '编号', index: 'index'},
     // {title: '编号', index: 'id'},
     {title: '商店', index: 'shop__name'},
